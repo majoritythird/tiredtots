@@ -13,7 +13,6 @@ end
 group :test do
   gem 'capybara', '0.3.9'
   gem 'cucumber-rails', '0.3.2'
-  # gem 'database_cleaner', '0.5.2'
   gem 'rspec',              '2.0.1'
   gem 'rspec-core',         '2.0.1'
   gem 'rspec-expectations', '2.0.1'
