@@ -1,0 +1,19 @@
+global: &global
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  database: sleepmonster_development
+  <<: *global
+
+test: &test
+  database: sleepmonster_test<%= ENV["TEST_ENV_NUMBER"] %>
+  <<: *global
+
+cucumber:
+  <<: *test
