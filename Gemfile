@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'decent_exposure', '1.0.0.rc1'
+gem 'devise', '1.1.3'
 gem 'factory_girl_rails', '1.0'
 gem 'haml', '3.0.22'
 gem 'mysql', '2.8.1'
