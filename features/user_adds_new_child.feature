@@ -10,6 +10,8 @@ Feature: User adds new child
     And I press "add"
     Then I should see "Children"
     And I should see "Alex"
+    When I follow "Alex"
+    Then I should see "Sleep journal for Alex"
 
   Scenario: without entering a name
     Given I am signed in
