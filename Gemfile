@@ -21,4 +21,5 @@ group :test do
   gem 'rspec-expectations', '2.0.1'
   gem 'rspec-mocks',        '2.0.1'
   gem 'rspec-rails',        '2.0.1'
+  gem 'timecop', '0.3.5'
 end
