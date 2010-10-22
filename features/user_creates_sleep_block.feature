@@ -1,7 +1,8 @@
 Feature: User creates a sleep block
 
   Scenario: starting a new sleep block
-    Given I am signed in
+    Given it is currently "1/1/2010"
+    And I am signed in
     And I have the following child:
       | name | Alex |
     When I go to the home page
@@ -12,7 +13,7 @@ Feature: User creates a sleep block
     And I fill in "Start" with "2:15PM"
     And I press "save"
     Then I should see "Sleep journal for Alex"
-    And I should see "Start: 2:15PM"
+    And I should see "Start: Jan 1 2:15PM"
 
   Scenario: sleep blocks require start times
     Given I am signed in

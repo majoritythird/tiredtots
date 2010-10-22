@@ -7,4 +7,4 @@
 - if sleep_blocks.any?
   %ul.sleep_blocks
     - sleep_blocks.each do |sleep_block|
-      %li Start: #{sleep_block.start.strftime("%l:%M%p")}
+      %li Start: #{sleep_block.start.to_s(:brief)}
