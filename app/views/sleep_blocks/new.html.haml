@@ -1,10 +1,5 @@
 %h1 New sleep block
 
-= form_for [:child, sleep_block] do |f|
-  - if sleep_block.errors.any?
-    %ul.errors
-      - sleep_block.errors.full_messages.each do |error_message|
-        %li= error_message
-  = f.label :start
-  = f.text_field :start
-  = f.submit "save"
+= render :partial => 'form'
+or
+= link_to "cancel", child_sleep_blocks_path(child)

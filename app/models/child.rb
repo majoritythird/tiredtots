@@ -5,4 +5,8 @@ class Child < ActiveRecord::Base
 
   validates :name, :presence => true
 
+  def open_sleep_block?
+    sleep_blocks.open.any?
+  end
+
 end

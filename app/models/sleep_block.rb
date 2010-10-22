@@ -3,4 +3,6 @@ class SleepBlock < ActiveRecord::Base
 
   validates :start, :presence => true
 
+  scope :open, where(:finish => nil)
+
 end

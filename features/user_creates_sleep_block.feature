@@ -9,8 +9,7 @@ Feature: User creates a sleep block
     Then I should not see "To get started"
     When I follow "Alex"
     Then I should see "Sleep journal for Alex"
-    When I follow "new sleep block"
-    And I fill in "Start" with "2:15PM"
+    When I fill in "Start" with "2:15PM"
     And I press "save"
     Then I should see "Sleep journal for Alex"
     And I should see "Start: Jan 1 2:15PM"
@@ -25,7 +24,8 @@ Feature: User creates a sleep block
       | finish |                 |
     When I go to the home page
     And I follow "Alex"
-    And I follow "edit"
+    Then I should see "Open sleep block"
+    And I should see "Jan  1 2:15PM" in the "Start" field
     And I fill in "Finish" with "3:30pm"
     And I press "save"
     Then I should see "Sleep journal for Alex"
@@ -38,10 +38,11 @@ Feature: User creates a sleep block
       | name | Alex |
     When I go to the home page
     And I follow "Alex"
-    And I follow "new sleep block"
     And I fill in "Start" with ""
     And I press "save"
     Then I should see "Start can't be blank"
+    When I follow "cancel"
+    Then I should see "Sleep journal for Alex"
 
   Scenario: canceling the edit of a sleep block
     Given I am signed in

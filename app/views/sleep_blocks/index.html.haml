@@ -2,8 +2,6 @@
   Sleep journal for
   = child.name
 
-%p= link_to "new sleep block", new_child_sleep_block_path(child)
-
 - if sleep_blocks.any?
   %ul.sleep_blocks
     - sleep_blocks.each do |sleep_block|
@@ -14,3 +12,9 @@
         - else
           Finish: #{sleep_block.finish.to_s(:brief)}
         = link_to "edit", edit_child_sleep_block_path(child, sleep_block)
+
+- if child.open_sleep_block?
+  %h2 Open sleep block
+- else
+  %h2 New sleep block
+= render :partial => 'form'
