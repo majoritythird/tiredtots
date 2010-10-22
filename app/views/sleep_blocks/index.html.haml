@@ -13,7 +13,7 @@
           Finish: #{sleep_block.finish.to_s(:brief)}
         = link_to "edit", edit_child_sleep_block_path(child, sleep_block)
 
-- if child.open_sleep_block?
+- if child.unfinished_sleep_block?
   %h2 Open sleep block
 - else
   %h2 New sleep block

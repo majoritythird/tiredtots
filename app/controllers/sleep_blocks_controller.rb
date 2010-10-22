@@ -2,8 +2,8 @@ class SleepBlocksController < ApplicationController
 
   expose(:child) { current_user.children.find params[:child_id] }
   expose(:sleep_block) do
-    if child.sleep_blocks.open.any? && params[:id].nil?
-      child.sleep_blocks.open.first
+    if child.sleep_blocks.unfinished.any? && params[:id].nil?
+      child.sleep_blocks.unfinished.first
     elsif params[:id]
       child.sleep_blocks.find(params[:id]).tap do |sleep_block|
         sleep_block.update_attributes(params[:sleep_block])
