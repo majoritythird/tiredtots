@@ -1,7 +1,13 @@
 %h1 Welcome
 %p
-  To get started,
   - if user_signed_in?
-    = link_to "add a child", new_child_path
+    - if current_user.children.empty?
+      To get started,
+      = link_to "add a child", new_child_path
+    - else
+      %ul.children
+        - current_user.children.each do |child|
+          %li= link_to child.name, child_sleep_blocks_path(child)
   - else
+    To get started,
     = link_to "sign up", new_user_registration_path

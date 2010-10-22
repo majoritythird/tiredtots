@@ -1,6 +1,6 @@
 Given /^I am signed in$/ do
   Given %(I am signed out)
-  @me = Factory :user
+  @user = @me = Factory(:user)
   Given %(I am on the sign in page)
   When  %(I fill in "Email" with "#{@me.email}")
   And   %(I fill in "Password" with "#{@me.password}")
@@ -14,9 +14,13 @@ Given /^I am signed out$/ do
     When 'I follow "sign out"'
   rescue
   end
-  @me = nil
+  @user = @me = nil
 end
 
 Given /^an existing user$/ do
-  @me = Factory :user
+  @user = @me = Factory(:user)
+end
+
+Given /^I have the following (.+):$/ do |child, table|
+  Given %(that user has the following child:), table
 end
