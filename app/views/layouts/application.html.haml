@@ -10,22 +10,18 @@
       %section
         %nav#primary
         %nav#secondary
-          - if user_signed_in?
-            %p
+          %p
+            - if user_signed_in?
               signed in as
               %em= current_user.email
-            |
-            %ul
-              %li= link_to "profile", edit_user_registration_path
-            |
-            %ul
-              %li= link_to "sign out", destroy_user_session_path
-          - else
-            %ul
-              %li= link_to "sign in", new_user_session_path
-            |
-            %ul
-              %li= link_to "sign up", new_user_registration_path
+              |
+              = link_to "profile", edit_user_registration_path
+              |
+              = link_to "sign out", destroy_user_session_path
+            - else
+              = link_to "sign in", new_user_session_path
+              |
+              = link_to "sign up", new_user_registration_path
 
     %p.notice= notice
     %p.alert= alert
