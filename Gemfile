@@ -13,6 +13,7 @@ end
 group :test do
   gem 'capybara', '0.3.9'
   gem 'cucumber-rails', '0.3.2'
+  gem 'escape_utils', '0.1.9'
   gem 'launchy', '0.3.7'
   gem 'rspec',              '2.0.1'
   gem 'rspec-core',         '2.0.1'
