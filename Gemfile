@@ -15,6 +15,7 @@ group :test do
   gem 'capybara', '0.3.9'
   gem 'chronic', '0.2.3'
   gem 'cucumber-rails', '0.3.2'
+  gem 'database_cleaner', '0.5.2'
   gem 'escape_utils', '0.1.9'
   gem 'launchy', '0.3.7'
   gem 'rspec',              '2.0.1'
