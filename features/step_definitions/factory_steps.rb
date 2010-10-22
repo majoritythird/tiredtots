@@ -52,8 +52,3 @@ Given %r{^that (.+) has the following (.+):$} do |parent, child, table|
     end
   end
 end
-
-# Given %r{^that (.+) belongs to the (.)$} do |child, parent|
-Given /^that import file belongs to the account$/ do
-  @import_file.update_attribute(:"account_id", @import_file.id)
-end
