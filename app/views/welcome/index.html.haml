@@ -1,4 +1,7 @@
 %h1 Welcome
 %p
   To get started,
-  = link_to "add a child", new_child_path
+  - if user_signed_in?
+    = link_to "add a child", new_child_path
+  - else
+    = link_to "sign up", new_user_registration_path
