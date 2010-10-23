@@ -2,31 +2,51 @@ class SleepBlock < ActiveRecord::Base
 
   belongs_to :child
 
-  validates :start_string, :presence => { :unless => :start_invalid? }
+  validates :start_string, :presence => { :if => :start_valid? }
+  validate :format_of_duration
   validate :format_of_start_time
   validate :format_of_finish_time
+  validate :only_finish_time_or_duration
 
   scope :unfinished, where(:finish_time => nil)
 
-  attr_accessor :start_invalid
-  alias start_invalid? start_invalid
+  attr_accessor :duration
+  attr_writer :start_valid
+
+  def start_valid
+    return true if @start_valid.nil?
+    @start_valid
+  end
+  alias start_valid? start_valid
+
+  def duration=(duration_string)
+    @duration = duration_string
+    return if duration_string.blank? || @start_string.blank?
+    duration_string.concat(":00") if duration_string =~ /^\d+:\d+$/
+    parsed_duration = ChronicDuration.parse(duration_string)
+    if parsed_duration.present?
+      self.finish_time = start_time + parsed_duration.seconds
+    else
+      @duration_invalid = true
+    end
+  end
 
   def start_string=(start_string)
-    return if start_string.blank?
     @start_string = start_string
+    return if start_string.blank?
     parsed_time = Chronic.parse(start_string)
     if parsed_time.present?
       self.start_time = parsed_time
     else
-      self.start_invalid = true
+      self.start_valid = false
     end
   rescue ArgumentError
-    self.start_invalid = true
+    self.start_valid = false
   end
 
   def finish_string=(finish_string)
-    return if finish_string.blank?
     @finish_string = finish_string
+    return if finish_string.blank?
     parsed_time = Chronic.parse(finish_string)
     if parsed_time.present?
       self.finish_time = parsed_time
@@ -38,6 +58,7 @@ class SleepBlock < ActiveRecord::Base
   end
 
   def start_string
+    return @start_string if !@start_string.nil?
     start_time.try(:to_s, :brief) || @start_string
   end
 
@@ -52,12 +73,20 @@ class SleepBlock < ActiveRecord::Base
 
   protected
 
+  def format_of_duration
+    errors.add(:duration, "is invalid") if @duration_invalid
+  end
+
   def format_of_start_time
-    errors.add(:start_time, "is invalid") if start_invalid
+    errors.add(:start_time, "is invalid") unless start_valid
   end
 
   def format_of_finish_time
     errors.add(:finish_time, "is invalid") if @finish_invalid
+  end
+
+  def only_finish_time_or_duration
+    errors[:base] << "Please provide a finish time or a duration, but not both" if @finish_string.present? && duration.present?
   end
 
 end

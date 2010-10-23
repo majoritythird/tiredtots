@@ -42,6 +42,35 @@ Feature: User creates a sleep block
     Then I should see "Sleep journal for Alex"
     And I should see "Jan 1 2:15pm - Jan 1 3:30pm"
 
+  Scenario: finishing a sleep block by providing a duration
+    Given it is currently "1/1/2010"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    And that child has the following sleep block:
+      | start_time  | 1/1/2010 2:15pm |
+      | finish_time |                 |
+    When I go to the home page
+    And I follow "Alex"
+    And I fill in "Duration" with "1:40"
+    And I press "save"
+    Then I should see "Jan 1 2:15pm - Jan 1 3:55pm"
+    When I follow "edit"
+    And I fill in "Finish time" with ""
+    And I fill in "Duration" with "2 hours"
+    And I press "save"
+    Then I should see "Jan 1 2:15pm - Jan 1 4:15pm"
+    When I follow "edit"
+    And I fill in "Finish time" with "3pm"
+    And I fill in "Duration" with "2 hours"
+    And I press "save"
+    Then I should see "Please provide a finish time or a duration, but not both"
+    And I fill in "Start time" with ""
+    And I fill in "Finish time" with ""
+    And I fill in "Duration" with "2 hours"
+    And I press "save"
+    Then I should see "Start time can't be blank"
+
   Scenario: sleep blocks require start times
     Given I am signed in
     And I have the following child:
