@@ -5,6 +5,7 @@
       To get started,
       = link_to "add a child", new_child_path
     - else
+      = link_to "add a child", new_child_path
       %ul.children
         - current_user.children.each do |child|
           %li= link_to child.name, child_sleep_blocks_path(child)

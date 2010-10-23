@@ -32,3 +32,26 @@ Feature: User adds new child
     And I fill in "Password" with "password"
     And I press "Sign in"
     Then I should see "New Child"
+
+  Scenario: with a duplicate child name
+    Given I am signed in
+    And I have the following child:
+      | name | Alex |
+    When I go to the home page
+    And I follow "add a child"
+    And I fill in "Name" with "Alex"
+    And I press "add"
+    Then I should see "Name has already been taken"
+    When I fill in "Name" with "alex"
+    And I press "add"
+    Then I should see "Name has already been taken"
+
+  Scenario: with url-unfriendly characters in the name
+    Given I am signed in
+    When I go to the home page
+    And I follow "add a child"
+    And I fill in "Name" with "Alex the Great/&?\est"
+    And I press "add"
+    Then I should see "Alex the Great/&?\est"
+    When I follow "Alex the Great/&?\est"
+    Then I should see "Sleep journal for Alex the Great/&?\est"

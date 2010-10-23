@@ -10,11 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101022165550) do
+ActiveRecord::Schema.define(:version => 20101023002034) do
 
   create_table "children", :force => true do |t|
     t.string  "name"
     t.integer "user_id"
+    t.string  "parameterized_name"
   end
 
   create_table "sleep_blocks", :force => true do |t|
