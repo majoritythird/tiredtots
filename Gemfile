@@ -9,6 +9,10 @@ gem 'haml', '3.0.22'
 gem 'mysql', '2.8.1'
 gem 'rails', '3.0.1'
 
+group :development do
+  gem 'heroku', '1.11.0'
+end
+
 group :development, :test do
   gem 'ruby-debug19', '0.11.6'
 end
