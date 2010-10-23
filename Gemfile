@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'aaronh-chronic', '0.3.9', :require => 'chronic'
 gem 'decent_exposure', '1.0.0.rc1'
 gem 'devise', '1.1.3'
 gem 'factory_girl_rails', '1.0'
@@ -13,7 +14,6 @@ end
 
 group :test do
   gem 'capybara', '0.3.9'
-  gem 'chronic', '0.2.3'
   gem 'cucumber-rails', '0.3.2'
   gem 'database_cleaner', '0.5.2'
   gem 'escape_utils', '0.1.9'
