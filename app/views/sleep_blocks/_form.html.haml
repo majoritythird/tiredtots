@@ -3,8 +3,8 @@
     %ul.errors
       - sleep_block.errors.full_messages.each do |error_message|
         %li= error_message
-  = f.label :start
-  = f.text_field :start, :value => sleep_block.start.try(:to_s, :brief)
+  = f.label :start_string
+  = f.text_field :start_string
   = f.label :finish
   = f.text_field :finish, :value => sleep_block.finish.try(:to_s, :brief)
   = f.submit "save"

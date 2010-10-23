@@ -14,6 +14,17 @@ Feature: User creates a sleep block
     Then I should see "Sleep journal for Alex"
     And I should see "Jan 1 2:15pm - (unfinished)"
 
+  Scenario: with chronic-friendly strings for the time
+    Given it is currently "1/2/2010"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    When I go to the home page
+    And I follow "Alex"
+    And I fill in "Start" with "yesterday at 4pm"
+    And I press "save"
+    Then I should see "Jan 1 4:00pm - (unfinished)"
+
   Scenario: finishing a sleep block
     Given it is currently "1/1/2010"
     And I am signed in
