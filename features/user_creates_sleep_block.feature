@@ -12,7 +12,7 @@ Feature: User creates a sleep block
     When I fill in "Start" with "2:15PM"
     And I press "save"
     Then I should see "Sleep journal for Alex"
-    And I should see "Jan 01 2:15PM - (unfinished)"
+    And I should see "Jan 1 2:15pm - (unfinished)"
 
   Scenario: finishing a sleep block
     Given it is currently "1/1/2010"
@@ -25,11 +25,11 @@ Feature: User creates a sleep block
     When I go to the home page
     And I follow "Alex"
     Then I should see "Open sleep block"
-    And I should see "Jan 01 2:15PM" in the "Start" field
+    And I should see "Jan 1 2:15pm" in the "Start" field
     And I fill in "Finish" with "3:30pm"
     And I press "save"
     Then I should see "Sleep journal for Alex"
-    And I should see "Jan 01 2:15PM - Jan 01 3:30PM"
+    And I should see "Jan 1 2:15pm - Jan 1 3:30pm"
 
   Scenario: sleep blocks require start times
     Given I am signed in
