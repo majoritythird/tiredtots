@@ -6,10 +6,10 @@
   %ul.sleep_blocks
     - sleep_blocks.each do |sleep_block|
       %li
-        #{sleep_block.start.to_s(:brief)}
+        #{sleep_block.start_time.to_s(:brief)}
         \-
-        - if sleep_block.finish.present?
-          #{sleep_block.finish.to_s(:brief)}
+        - if sleep_block.finish_time.present?
+          #{sleep_block.finish_time.to_s(:brief)}
         - else
           (unfinished)
         = link_to "edit", edit_child_sleep_block_path(child, sleep_block)

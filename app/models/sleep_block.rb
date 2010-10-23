@@ -3,10 +3,10 @@ class SleepBlock < ActiveRecord::Base
   belongs_to :child
 
   validates :start_string, :presence => { :unless => :start_invalid? }
-  validate :format_of_start
-  validate :format_of_finish
+  validate :format_of_start_time
+  validate :format_of_finish_time
 
-  scope :unfinished, where(:finish => nil)
+  scope :unfinished, where(:finish_time => nil)
 
   attr_accessor :start_invalid
   alias start_invalid? start_invalid
@@ -16,7 +16,7 @@ class SleepBlock < ActiveRecord::Base
     @start_string = start_string
     parsed_time = Chronic.parse(start_string)
     if parsed_time.present?
-      self.start = parsed_time
+      self.start_time = parsed_time
     else
       self.start_invalid = true
     end
@@ -29,7 +29,7 @@ class SleepBlock < ActiveRecord::Base
     @finish_string = finish_string
     parsed_time = Chronic.parse(finish_string)
     if parsed_time.present?
-      self.finish = parsed_time
+      self.finish_time = parsed_time
     else
       @finish_invalid = true
     end
@@ -38,26 +38,26 @@ class SleepBlock < ActiveRecord::Base
   end
 
   def start_string
-    start.try(:to_s, :brief) || @start_string
+    start_time.try(:to_s, :brief) || @start_string
   end
 
   def finish_string
-    finish.try(:to_s, :brief) || @finish_string
+    finish_time.try(:to_s, :brief) || @finish_string
   end
 
   def self.human_attribute_name(name, options = {})
     name = name.to_s
-    {'start_string' => 'Start', 'finish_string' => 'Finish'}[name] || name.humanize
+    {'start_string' => 'Start time', 'finish_string' => 'Finish time'}[name] || name.humanize
   end
 
   protected
 
-  def format_of_start
-    errors.add(:start, "is invalid") if start_invalid
+  def format_of_start_time
+    errors.add(:start_time, "is invalid") if start_invalid
   end
 
-  def format_of_finish
-    errors.add(:finish, "is invalid") if @finish_invalid
+  def format_of_finish_time
+    errors.add(:finish_time, "is invalid") if @finish_invalid
   end
 
 end
