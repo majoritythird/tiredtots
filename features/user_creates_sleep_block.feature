@@ -51,8 +51,22 @@ Feature: User creates a sleep block
     And I fill in "Start" with ""
     And I press "save"
     Then I should see "Start can't be blank"
+    And I should not see "Start is invalid"
     When I follow "cancel"
     Then I should see "Sleep journal for Alex"
+
+  Scenario: sleep blocks with times that cannot be parsed
+    Given I am signed in
+    And I have the following child:
+      | name | Alex |
+    When I go to the home page
+    And I follow "Alex"
+    And I fill in "Start" with "monkey butter"
+    And I fill in "Finish" with "maybe doughnuts?"
+    And I press "save"
+    Then I should see "Start is invalid"
+    And I should not see "Start can't be blank"
+    And I should see "Finish is invalid"
 
   Scenario: canceling the edit of a sleep block
     Given I am signed in

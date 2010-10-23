@@ -5,6 +5,6 @@
         %li= error_message
   = f.label :start_string
   = f.text_field :start_string
-  = f.label :finish
-  = f.text_field :finish, :value => sleep_block.finish.try(:to_s, :brief)
+  = f.label :finish_string
+  = f.text_field :finish_string
   = f.submit "save"
