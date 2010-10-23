@@ -3,7 +3,7 @@ class Child < ActiveRecord::Base
   belongs_to :user
   has_many :sleep_blocks, :dependent => :destroy
 
-  validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
+  validates :name, :presence => true, :uniqueness => {:case_sensitive => false, :scope => :user_id}
 
   before_save :set_parameterized_name
 

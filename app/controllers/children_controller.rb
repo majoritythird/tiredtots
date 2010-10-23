@@ -12,7 +12,7 @@ class ChildrenController < ApplicationController
       current_user.children.build
     end
   end
-  expose(:children) { current_user.children }
+  expose(:children) { current_user.reload.children }
 
   def create
     child.save

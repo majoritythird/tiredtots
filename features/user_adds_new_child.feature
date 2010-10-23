@@ -75,3 +75,16 @@ Feature: User adds new child
     And I follow "cancel"
     Then I should see "Your Children"
     And I should see "Alex"
+
+  Scenario: with a name already in use by another user
+    Given an existing user
+    And that user has the following child:
+      | name | Alex |
+    And I am signed in
+    When I go to the home page
+    And I follow "add a child"
+    And I fill in "Name" with "Alex"
+    And I press "save"
+    Then I should see "Your Children"
+    And I should not see "Name has already been taken"
+    And I should see "Alex"
