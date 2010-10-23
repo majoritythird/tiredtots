@@ -7,7 +7,7 @@ Feature: User adds new child
     When I follow "add a child"
     Then I should see "New Child"
     When I fill in "Name" with "Alex"
-    And I press "add"
+    And I press "save"
     Then I should see "Children"
     And I should see "Alex"
     When I follow "Alex"
@@ -18,7 +18,7 @@ Feature: User adds new child
     And I am on the home page
     When I follow "add a child"
     And fill in "Name" with ""
-    And I press "add"
+    And I press "save"
     Then I should see "Name can't be blank"
 
   Scenario: without signing in first
@@ -38,12 +38,13 @@ Feature: User adds new child
     And I have the following child:
       | name | Alex |
     When I go to the home page
+    And I follow "manage your children"
     And I follow "add a child"
     And I fill in "Name" with "Alex"
-    And I press "add"
+    And I press "save"
     Then I should see "Name has already been taken"
     When I fill in "Name" with "alex"
-    And I press "add"
+    And I press "save"
     Then I should see "Name has already been taken"
 
   Scenario: with url-unfriendly characters in the name
@@ -51,7 +52,26 @@ Feature: User adds new child
     When I go to the home page
     And I follow "add a child"
     And I fill in "Name" with "Alex the Great/&?\est"
-    And I press "add"
+    And I press "save"
     Then I should see "Alex the Great/&?\est"
     When I follow "Alex the Great/&?\est"
     Then I should see "Sleep journal for Alex the Great/&?\est"
+
+  Scenario: canceling the creation of the first child
+    Given I am signed in
+    When I go to the home page
+    And I follow "add a child"
+    And I follow "cancel"
+    Then I should see "Welcome"
+    And I should see "To get started, add a child"
+
+  Scenario: canceling the creation of the second child
+    Given I am signed in
+    And I have the following child:
+      | name | Alex |
+    When I go to the home page
+    And I follow "manage your children"
+    And I follow "add a child"
+    And I follow "cancel"
+    Then I should see "Your Children"
+    And I should see "Alex"

@@ -5,10 +5,11 @@
       To get started,
       = link_to "add a child", new_child_path
     - else
-      = link_to "add a child", new_child_path
+      = link_to "manage your children", children_path
       %ul.children
         - current_user.children.each do |child|
-          %li= link_to child.name, child_sleep_blocks_path(child)
+          %li
+            = link_to child.name, child_sleep_blocks_path(child)
   - else
     To get started,
     = link_to "sign up", new_user_registration_path
