@@ -55,3 +55,12 @@ Feature: User creates a sleep block
     And I follow "edit"
     And I follow "cancel"
     Then I should see "Sleep journal for Alex"
+
+  Scenario: navigating back to the welcome page
+    Given I am signed in
+    And I have the following child:
+      | name | Alex |
+    When I go to the home page
+    And I follow "Alex"
+    And I follow "home" within "header"
+    Then I should see "Welcome"
