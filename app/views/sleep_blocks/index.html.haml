@@ -9,21 +9,21 @@
       - the_time = Time.parse("12am")
       - 144.times do |index|
         - if (index % 6).zero?
-          .hour= the_time.strftime("%-1I %P")
+          .hour= the_time.to_s(:hm)
         - else
           .hour &nbsp;
         - the_time += 10.minutes
     - child.sleep_data_range.each do |date|
-      %div(class="day #{date.strftime("%b %-1d").parameterize}")
-        .date= date.strftime("%b %-1d")
+      %div(class="day #{date.to_s(:md).parameterize}")
+        .date= date.to_s(:md)
         - the_time = Time.parse("12am")
         - 144.times do |index|
           - block = child.sleep_block_covering(date.to_time + (index*10).minutes)
           - if block
-            = link_to edit_child_sleep_block_path(child, block), :id => "#{date.strftime("%b %-1d").parameterize}_#{the_time.strftime('%-1I:%M%P')}", :title => the_time.strftime('%-1I:%M%P') do
-              %div(class="asleep #{the_time.strftime('%-1I:%M%P')}")
+            = link_to edit_child_sleep_block_path(child, block), :id => "#{date.to_s(:md).parameterize}_#{the_time.to_s(:hmm)}", :title => the_time.to_s(:hmm) do
+              %div(class="asleep #{the_time.to_s(:hmm)}")
           - else
-            %div(class="awake #{the_time.strftime('%-1I:%M%P')}" title="#{the_time.strftime('%-1I:%M%P')}")
+            %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
           - the_time += 10.minutes
 
 - if child.unfinished_sleep_block?

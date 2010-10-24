@@ -60,11 +60,11 @@ class SleepBlock < ActiveRecord::Base
 
   def start_string
     return @start_string if !@start_string.nil?
-    start_time.try(:to_s, :brief) || @start_string
+    start_time.try(:to_s, :md_hm) || @start_string
   end
 
   def finish_string
-    finish_time.try(:to_s, :brief) || @finish_string
+    finish_time.try(:to_s, :md_hm) || @finish_string
   end
 
   def self.human_attribute_name(name, options = {})
@@ -74,9 +74,9 @@ class SleepBlock < ActiveRecord::Base
 
   def to_s
     if finish_time
-      "#{start_time.to_s(:brief)} - #{finish_time.to_s(:brief)}"
+      "#{start_time.to_s(:md_hm)} - #{finish_time.to_s(:md_hm)}"
     else
-      "#{start_time.to_s(:brief)} - (unfinished)"
+      "#{start_time.to_s(:md_hm)} - (unfinished)"
     end
   end
 
