@@ -1,5 +1,6 @@
 %h1 Edit sleep block
 
 = render :partial => 'form'
+= button_to "delete", child_sleep_block_path(child, sleep_block), :method => "delete"
 or
 = link_to "cancel", child_sleep_blocks_path(child)
