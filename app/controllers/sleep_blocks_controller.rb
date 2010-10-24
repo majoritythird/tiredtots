@@ -23,4 +23,9 @@ class SleepBlocksController < ApplicationController
 
   alias update create
 
+  def destroy
+    sleep_block.destroy
+    respond_with sleep_block, :location => child_sleep_blocks_path(child)
+  end
+
 end
