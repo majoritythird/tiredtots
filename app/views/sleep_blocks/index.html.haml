@@ -13,9 +13,9 @@
         - else
           .hour &nbsp;
         - the_time = the_time + 10.minutes
-    - 10.times do |index|
+    - child.sleep_data_range.each do |date|
       .day
-        .date Oct #{index+10}
+        .date= date.strftime("%b %-1d")
         - 40.times do
           .asleep
         - 75.times do
