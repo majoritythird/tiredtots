@@ -17,8 +17,10 @@
       .day
         .date= date.strftime("%b %-1d")
         - 144.times do |index|
-          - if child.asleep_at?(date.to_time + (index*10).minutes)
-            .asleep
+          - block = child.sleep_block_covering(date.to_time + (index*10).minutes)
+          - if block
+            = link_to edit_child_sleep_block_path(child, block), :title => block do
+              .asleep
           - else
             .awake
 

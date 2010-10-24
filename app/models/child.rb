@@ -7,10 +7,10 @@ class Child < ActiveRecord::Base
 
   before_save :set_parameterized_name
 
-  def asleep_at?(time)
+  def sleep_block_covering(time)
     sleep_blocks.finished.select do |block|
       block.start_time < time && block.finish_time > time
-    end.any?
+    end.first
   end
 
   def sleep_data_range

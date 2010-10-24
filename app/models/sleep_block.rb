@@ -72,6 +72,14 @@ class SleepBlock < ActiveRecord::Base
     {'start_string' => 'Start time', 'finish_string' => 'Finish time'}[name] || name.humanize
   end
 
+  def to_s
+    if finish_time
+      "#{start_time.to_s(:brief)} - #{finish_time.to_s(:brief)}"
+    else
+      "#{start_time.to_s(:brief)} - (unfinished)"
+    end
+  end
+
   protected
 
   def format_of_duration
