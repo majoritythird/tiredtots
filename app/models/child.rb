@@ -7,12 +7,12 @@ class Child < ActiveRecord::Base
 
   before_save :set_parameterized_name
 
-  def unfinished_sleep_block?
-    sleep_blocks.unfinished.any?
-  end
-
   def to_param
     parameterized_name
+  end
+
+  def unfinished_sleep_block?
+    sleep_blocks.unfinished.any?
   end
 
   protected
