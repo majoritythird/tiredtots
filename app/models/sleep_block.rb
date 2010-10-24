@@ -9,6 +9,7 @@ class SleepBlock < ActiveRecord::Base
   validate :only_finish_time_or_duration
 
   scope :unfinished, where(:finish_time => nil)
+  scope :finished, where('finish_time IS NOT NULL')
 
   attr_accessor :duration
   attr_writer :start_valid

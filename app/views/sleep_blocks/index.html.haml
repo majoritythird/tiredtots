@@ -16,12 +16,11 @@
     - child.sleep_data_range.each do |date|
       .day
         .date= date.strftime("%b %-1d")
-        - 40.times do
-          .asleep
-        - 75.times do
-          .awake
-        - 29.times do
-          .asleep
+        - 144.times do |index|
+          - if child.asleep_at?(date.to_time + (index*10).minutes)
+            .asleep
+          - else
+            .awake
 
   %ul.sleep_blocks
     - sleep_blocks.each do |sleep_block|

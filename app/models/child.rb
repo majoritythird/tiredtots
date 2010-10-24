@@ -7,6 +7,12 @@ class Child < ActiveRecord::Base
 
   before_save :set_parameterized_name
 
+  def asleep_at?(time)
+    sleep_blocks.finished.select do |block|
+      block.start_time < time && block.finish_time > time
+    end.any?
+  end
+
   def sleep_data_range
     (sleep_blocks.first.start_time.to_date..sleep_blocks.last.start_time.to_date)
   end
