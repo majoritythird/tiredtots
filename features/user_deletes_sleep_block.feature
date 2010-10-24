@@ -1,6 +1,6 @@
 Feature: User deletes sleep block
 
-  @wip
+  @wippp
   Scenario: deleting a finished sleep block
     Given it is currently "1/1/2010"
     And I am signed in

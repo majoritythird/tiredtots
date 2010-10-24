@@ -9,7 +9,7 @@ class Child < ActiveRecord::Base
 
   def sleep_block_covering(time)
     sleep_blocks.finished.select do |block|
-      block.start_time < time && block.finish_time > time
+      block.start_time <= time && block.finish_time >= time
     end.first
   end
 

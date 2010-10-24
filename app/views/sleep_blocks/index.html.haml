@@ -12,34 +12,25 @@
           .hour= the_time.strftime("%-1I %P")
         - else
           .hour &nbsp;
-        - the_time = the_time + 10.minutes
+        - the_time += 10.minutes
     - child.sleep_data_range.each do |date|
-      .day
+      %div(class="day #{date.strftime("%b %-1d").parameterize}")
         .date= date.strftime("%b %-1d")
+        - the_time = Time.parse("12am")
         - 144.times do |index|
           - block = child.sleep_block_covering(date.to_time + (index*10).minutes)
           - if block
-            = link_to edit_child_sleep_block_path(child, block), :title => block do
-              .asleep
+            = link_to edit_child_sleep_block_path(child, block), :id => "#{date.strftime("%b %-1d").parameterize}_#{the_time.strftime('%-1I:%M%P')}", :title => the_time.strftime('%-1I:%M%P') do
+              %div(class="asleep #{the_time.strftime('%-1I:%M%P')}")
           - else
-            .awake
-
-  %ul.sleep_blocks
-    - sleep_blocks.each do |sleep_block|
-      %li
-        #{sleep_block.start_time.to_s(:brief)}
-        \-
-        - if sleep_block.finish_time.present?
-          #{sleep_block.finish_time.to_s(:brief)}
-        - else
-          (unfinished)
-        = link_to "edit", edit_child_sleep_block_path(child, sleep_block)
+            %div(class="awake #{the_time.strftime('%-1I:%M%P')}" title="#{the_time.strftime('%-1I:%M%P')}")
+          - the_time += 10.minutes
 
 - if child.unfinished_sleep_block?
-  %h2 Open sleep block
+  %h2.clear Open sleep block
   = render :partial => "form"
   or
   = button_to "delete", child_sleep_block_path(child, sleep_block), :method => "delete"
 - else
-  %h2 New sleep block
+  %h2.clear New sleep block
   = render :partial => "form"
