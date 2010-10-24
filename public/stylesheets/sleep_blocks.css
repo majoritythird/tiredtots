@@ -1,0 +1,151 @@
+@import url("/stylesheets/whitespace-reset.css");
+.block {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #e0e7ea;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  background: white;
+  background-image: -moz-linear-gradient(100% 100% 90deg, #f2f4f4 20%, white 80%);
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, color-stop(0.8, white), color-stop(0.2, #f2f4f4)); }
+  .block h2 {
+    padding: 0 0 20px 0;
+    font: normal 18px "MuseoSans", Helvetica, Arial, sans-serif; }
+  .block:after {
+    content: ".";
+    text-indent: -8327px;
+    display: block;
+    position: absolute;
+    bottom: -22px;
+    left: 0;
+    height: 21px;
+    width: 50%;
+    background: url(/images/block_shadow_grey.png) repeat-x bottom left; }
+  .block:before {
+    content: ".";
+    text-indent: -8327px;
+    display: block;
+    position: absolute;
+    bottom: -22px;
+    right: 0;
+    height: 21px;
+    width: 50%;
+    background: url(/images/block_shadow_grey.png) repeat-x bottom right; }
+
+form .error {
+  background: #ffe3d9;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #e45d2e;
+  font-weight: bold;
+  margin: -26px -29px 30px -29px;
+  padding: 7px 20px;
+  text-align: center; }
+form ul.error {
+  padding-left: 38px;
+  text-align: left; }
+  form ul.error li {
+    padding: 0 0 5px 0;
+    list-style: disc; }
+form dt {
+  padding: 0 0 3px 5px; }
+form label {
+  font-weight: bold; }
+form dd {
+  padding: 0 0 25px 0; }
+form small {
+  display: block;
+  font-size: 11px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #5c5f61; }
+form input[type="text"], form input[type="password"], form input[type="email"], form input[type="phone"] {
+  width: 228px;
+  height: 24px;
+  padding: 2px 5px;
+  border: 1px solid #dae2e6;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #3f4142; }
+form textarea {
+  font-size: 12px;
+  color: #3f4142;
+  padding: 5px 10px;
+  line-height: 16px;
+  border: 1px solid #dae2e6;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+form fieldset.actions {
+  font-size: 12px; }
+  form fieldset.actions a {
+    color: #2ea1e4; }
+  form fieldset.actions button[type="submit"], form fieldset.actions input[type="submit"] {
+    -webkit-font-smoothing: antialiased;
+    padding: 7px 20px 8px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 0 #2586bf;
+    text-decoration: none;
+    text-transform: lowercase;
+    border: 1px solid #34b7ff;
+    cursor: pointer;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #3bcdff;
+    background-image: -moz-linear-gradient(100% 100% 90deg, #2ea2e6, #3bcdff);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3bcdff), to(#2ea2e6));
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    overflow: visible;
+    margin: 0 10px 0 0; }
+    form fieldset.actions button[type="submit"]:hover, form fieldset.actions input[type="submit"]:hover {
+      background-color: #3dd9ff;
+      background-image: -moz-linear-gradient(100% 100% 90deg, #31adf5, #3dd9ff);
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3dd9ff), to(#31adf5)); }
+    form fieldset.actions button[type="submit"]:active, form fieldset.actions input[type="submit"]:active {
+      position: relative;
+      top: 1px;
+      background-color: #37c5ff;
+      background-image: -moz-linear-gradient(100% 100% 90deg, #30acf3, #37c5ff);
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#37c5ff), to(#30acf3));
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+
+.sleep_blocks {
+  margin-top: 50px; }
+  .sleep_blocks .header {
+    width: 1058px;
+    white-space: nowrap; }
+    .sleep_blocks .header div {
+      float: left;
+      font-size: 10px;
+      width: 7px;
+      padding: 0; }
+      .sleep_blocks .header div.date {
+        font-size: inherit;
+        width: 50px; }
+      .sleep_blocks .header div.hour {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
+  .sleep_blocks .day {
+    clear: both;
+    width: 1058px;
+    white-space: nowrap; }
+    .sleep_blocks .day div {
+      width: 5px;
+      float: left;
+      padding: 0;
+      margin: 1px;
+      height: 16px; }
+      .sleep_blocks .day div.date {
+        width: 50px;
+        margin: 0; }
+      .sleep_blocks .day div.asleep {
+        background-color: #aadfff; }
+      .sleep_blocks .day div.awake {
+        background-color: #ff7c00; }

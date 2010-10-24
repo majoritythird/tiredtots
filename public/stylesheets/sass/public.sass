@@ -1,0 +1,34 @@
+@import "mixins.sass", "common.sass"
+
+body
+  font: normal 14px Helvetica, Arial, sans-serif
+  color: #3f4142
+  background: #3f4142
+fieldset.actions
+  input[type="submit"]
+    +button
+label.checkbox
+  display: block
+  clear: both
+  padding: 0 0 20px 0
+  font-weight: bold
+  input
+    margin: 0 5px 0 0
+a.button
+  +button
+
+p.alert, p.notice
+  width: 430px
+  padding: 8px 15px !important
+  margin: -25px auto 25px auto
+  font-size: 14px
+  font-weight: bold
+  color: #e45d2e
+  text-align: center
+  border: 1px solid #e1af9d
+  +border-radius(7px)
+  background: #ffe3d9
+p.notice
+  color: #62b634
+  border-color: #a9d795
+  background: #defecf

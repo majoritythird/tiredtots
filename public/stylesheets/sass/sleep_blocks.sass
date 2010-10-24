@@ -1,0 +1,36 @@
+@import "mixins.sass", "common.sass"
+
+.sleep_blocks
+  margin-top: 50px
+  .header
+    width: 1058px
+    white-space: nowrap
+    div
+      float: left
+      font-size: 10px
+      width: 7px
+      padding: 0
+      &.date
+        font-size: inherit
+        width: 50px
+      &.hour
+        -webkit-transform: rotate(-90deg)
+        -moz-transform: rotate(-90deg)
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
+  .day
+    clear: both
+    width: 1058px
+    white-space: nowrap
+    div
+      width: 5px
+      float: left
+      padding: 0
+      margin: 1px
+      height: 16px
+      &.date
+        width: 50px
+        margin: 0
+      &.asleep
+        background-color: #AADFFF
+      &.awake
+        background-color: #FF7C00

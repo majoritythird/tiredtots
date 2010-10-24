@@ -3,6 +3,26 @@
   = child.name
 
 - if sleep_blocks.any?
+  .sleep_blocks
+    .header
+      .date &nbsp;
+      - the_time = Time.parse("12am")
+      - 144.times do |index|
+        - if (index % 6).zero?
+          .hour= the_time.strftime("%-1I %P")
+        - else
+          .hour &nbsp;
+        - the_time = the_time + 10.minutes
+    - 10.times do |index|
+      .day
+        .date Oct #{index+10}
+        - 40.times do
+          .asleep
+        - 75.times do
+          .awake
+        - 29.times do
+          .asleep
+
   %ul.sleep_blocks
     - sleep_blocks.each do |sleep_block|
       %li
