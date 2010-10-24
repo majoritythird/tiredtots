@@ -6,6 +6,7 @@ gem 'decent_exposure', '1.0.0.rc1'
 gem 'devise', '1.1.3'
 gem 'factory_girl_rails', '1.0'
 gem 'haml', '3.0.22'
+gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'mysql', '2.8.1'
 gem 'rails', '3.0.1'
 

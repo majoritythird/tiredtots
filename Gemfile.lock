@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/koppen/hassle.git
+  revision: a08c757
+  specs:
+    hassle (0.0.1)
+      haml
+      rack
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -166,6 +174,7 @@ DEPENDENCIES
   escape_utils (= 0.1.9)
   factory_girl_rails (= 1.0)
   haml (= 3.0.22)
+  hassle!
   heroku (= 1.11.0)
   launchy (= 0.3.7)
   mysql (= 2.8.1)
