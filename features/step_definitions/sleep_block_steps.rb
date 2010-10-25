@@ -19,3 +19,7 @@ Then /^I should not see a sleep block from ([^\"]*) to ([^\"]*) on ([^\"]*)$/ do
   end
   result
 end
+
+Then /^I should see no data for ([^\"]*) on ([^\"]*)$/ do |time, day|
+  page.should have_xpath(%|//div[contains(@class,'day #{day.parameterize}')]/div[contains(@class,'no_data')][contains(@class,'#{Time.parse(time).to_s(:hmm)}')]|)
+end

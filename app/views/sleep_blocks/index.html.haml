@@ -18,12 +18,16 @@
         .date= date.to_s(:md)
         - the_time = Time.parse("12am")
         - 144.times do |index|
-          - block = child.sleep_block_covering(date.to_time + (index*10).minutes)
+          - time_block = date.to_time + (index*10).minutes
+          - block = child.sleep_block_covering(time_block)
           - if block
             = link_to edit_child_sleep_block_path(child, block), :id => "#{date.to_s(:md).parameterize}_#{the_time.to_s(:hmm)}", :title => the_time.to_s(:hmm) do
               %div(class="asleep #{the_time.to_s(:hmm)}")
           - else
-            %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
+            - if child.no_data_for_time_block(time_block)
+              %div(class="no_data #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
+            - else
+              %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
           - the_time += 10.minutes
 
 - if child.unfinished_sleep_block?

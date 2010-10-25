@@ -42,6 +42,7 @@ Feature: User creates a sleep block
     And I press "save"
     Then I should see "Sleep journal for Alex"
     And I should see a sleep block from 2:10pm to 3:30pm on Jan 1
+    And I should see no data for 2:00pm on Jan 1
 
   Scenario: finishing a sleep block by providing a duration
     Given it is currently "1/1/2010"

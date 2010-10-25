@@ -17,6 +17,10 @@ class Child < ActiveRecord::Base
     (sleep_blocks.first.start_time.to_date..sleep_blocks.last.start_time.to_date)
   end
 
+  def no_data_for_time_block(time)
+    sleep_blocks.finished.none? {|block| block.start_time < time} || sleep_blocks.finished.none? {|block| block.finish_time > time}
+  end
+
   def to_param
     parameterized_name
   end
