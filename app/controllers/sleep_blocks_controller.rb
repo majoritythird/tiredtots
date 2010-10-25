@@ -9,7 +9,7 @@ class SleepBlocksController < ApplicationController
         sleep_block.update_attributes(params[:sleep_block])
       end
     elsif params[:sleep_block]
-      child.sleep_blocks.create(params[:sleep_block])
+      child.sleep_blocks.build(params[:sleep_block])
     else
       child.sleep_blocks.build
     end

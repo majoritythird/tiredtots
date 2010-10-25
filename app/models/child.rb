@@ -14,7 +14,9 @@ class Child < ActiveRecord::Base
   end
 
   def sleep_data_range
-    (sleep_blocks.first.start_time.to_date..sleep_blocks.last.start_time.to_date)
+    last = sleep_blocks.last
+    end_date = last.finish_time ? last.finish_time.to_date : last.start_time.to_date
+    (sleep_blocks.first.start_time.to_date..end_date)
   end
 
   def no_data_for_time_block(time)
