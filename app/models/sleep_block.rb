@@ -61,12 +61,11 @@ class SleepBlock < ActiveRecord::Base
   end
 
   def start_string
-    return @start_string if !@start_string.nil?
-    start_time.try(:to_s, :md_hm) || @start_string
+    @start_string || start_time.try(:to_s, :md_hm)
   end
 
   def finish_string
-    finish_time.try(:to_s, :md_hm) || @finish_string
+    @finish_string || finish_time.try(:to_s, :md_hm)
   end
 
   def self.human_attribute_name(name, options = {})

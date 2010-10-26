@@ -113,6 +113,8 @@ Feature: User creates a sleep block
     Then I should see "Start time is invalid"
     And I should not see "Start time can't be blank"
     And I should see "Finish time is invalid"
+    And I should see "monkey butter" in the "Start time" field
+    And I should see "maybe doughnuts?" in the "Finish time" field
 
   Scenario: sleep blocks which end before they begin
     Given it is currently "Jan 1 2010"
@@ -126,7 +128,7 @@ Feature: User creates a sleep block
     And I press "save"
     Then I should see "Sleep can't end before it begins"
     And I should see "3pm" in the "Start time" field
-    And I should see "Jan 1 2:00pm" in the "Finish time" field
+    And I should see "2pm" in the "Finish time" field
     When I fill in "Start time" with "3pm"
     And I fill in "Finish time" with "3pm"
     And I press "save"
@@ -148,7 +150,7 @@ Feature: User creates a sleep block
     And I press "save"
     Then I should see "Sleep can't overlap existing blocks of sleep"
     And I should see "Jan 1 2pm" in the "Start time" field
-    And I should see "Jan 1 3:00pm" in the "Finish time" field
+    And I should see "Jan 1 3pm" in the "Finish time" field
     When I fill in "Start time" with "Jan 1 2:30pm"
     And I fill in "Finish time" with "Jan 1 4:30pm"
     And I press "save"
