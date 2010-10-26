@@ -8,7 +8,7 @@ class SleepBlock < ActiveRecord::Base
   validate :format_of_finish_time
   validate :only_finish_time_or_duration
   validate :finish_after_start
-  validate :discrete_block
+  validate :no_overlap
 
   scope :unfinished, where(:finish_time => nil)
   scope :finished, where('finish_time IS NOT NULL')
@@ -84,7 +84,23 @@ class SleepBlock < ActiveRecord::Base
 
   protected
 
-  def discrete_block
+  def finish_after_start
+    errors[:base] << "Sleep can't end before it begins" if finish_time && finish_time <= start_time
+  end
+
+  def format_of_duration
+    errors.add(:duration, "is invalid") if @duration_invalid
+  end
+
+  def format_of_finish_time
+    errors.add(:finish_time, "is invalid") if @finish_invalid
+  end
+
+  def format_of_start_time
+    errors.add(:start_time, "is invalid") unless start_valid
+  end
+
+  def no_overlap
     finish_before_count = child.sleep_blocks.where("finish_time <= ?", start_time).count
     start_after_count = child.sleep_blocks.where("start_time >= ?", finish_time).count
     total_count = if id.nil?
@@ -95,23 +111,6 @@ class SleepBlock < ActiveRecord::Base
     if ((finish_before_count + start_after_count) < total_count)
       errors[:base] << "Sleep can't overlap existing blocks of sleep"
     end
-  end
-
-  def finish_after_start
-    errors[:base] << "Sleep can't end before it begins" if finish_time && finish_time <= start_time
-  end
-
-
-  def format_of_duration
-    errors.add(:duration, "is invalid") if @duration_invalid
-  end
-
-  def format_of_start_time
-    errors.add(:start_time, "is invalid") unless start_valid
-  end
-
-  def format_of_finish_time
-    errors.add(:finish_time, "is invalid") if @finish_invalid
   end
 
   def only_finish_time_or_duration
