@@ -170,3 +170,12 @@ Feature: User creates a sleep block
     And I follow "jan-1_2:10pm"
     And I follow "cancel"
     Then I should see "Sleep journal for Alex"
+
+  Scenario: following a bookmark to sleep graph page when not signed in
+    Given the following user:
+      | email | user@example.com |
+    And that user has the following child:
+      | name | Alex |
+    When I follow a bookmark to the sleep graph page for "Alex"
+    Then I should see "You need to sign in or sign up before continuing."
+    And I should not see "Sleep journal for Alex"

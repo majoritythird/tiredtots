@@ -1,4 +1,5 @@
 class SleepBlocksController < ApplicationController
+  before_filter :authenticate_user!
 
   expose(:child) { current_user.children.find_by_parameterized_name params[:child_id] }
   expose(:sleep_block) do

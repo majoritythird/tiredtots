@@ -23,3 +23,7 @@ end
 Then /^I should see no data for ([^\"]*) on ([^\"]*)$/ do |time, day|
   page.should have_xpath(%|//div[contains(@class,'day #{day.parameterize}')]/div[contains(@class,'no_data')][contains(@class,'#{Time.parse(time).to_s(:hmm)}')]|)
 end
+
+When /^I follow a bookmark to the sleep graph page for "([^\"]*)"$/ do |child_name|
+  visit "/children/alex/sleep_blocks"
+end
