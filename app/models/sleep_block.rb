@@ -19,6 +19,9 @@ class SleepBlock < ActiveRecord::Base
 
   after_save :update_tracked_days
 
+  attr_accessor :duration
+  attr_writer :start_valid
+
   def began_before(date)
     start_time < date.to_time.beginning_of_day
   end
@@ -43,27 +46,6 @@ class SleepBlock < ActiveRecord::Base
     began_on(date) && ended_after(date)
   end
 
-  def ended_after(date)
-    finish_time > date.to_time.end_of_day
-  end
-
-  def ended_on(date)
-    finish_time.to_date == date
-  end
-
-  def finished?
-    finish_time.present?
-  end
-
-  attr_accessor :duration
-  attr_writer :start_valid
-
-  def start_valid
-    return true if @start_valid.nil?
-    @start_valid
-  end
-  alias start_valid? start_valid
-
   def duration=(duration_string)
     @duration = duration_string
     return if duration_string.blank? || @start_string.blank?
@@ -76,21 +58,16 @@ class SleepBlock < ActiveRecord::Base
     end
   end
 
-  def start_string=(start_string)
-    @start_string = start_string
-    return if start_string.blank?
-    begin
-      parsed_time = Chronic.parse(start_string, :context => :past)
-    rescue RuntimeError
-      parsed_time = Chronic.parse(start_string, :context => :none)
-    end
-    if parsed_time.present?
-      self.start_time = parsed_time
-    else
-      self.start_valid = false
-    end
-  rescue ArgumentError
-    self.start_valid = false
+  def ended_after(date)
+    finish_time > date.to_time.end_of_day
+  end
+
+  def ended_on(date)
+    finish_time.to_date == date
+  end
+
+  def finished?
+    finish_time.present?
   end
 
   def finish_string=(finish_string)
@@ -110,6 +87,17 @@ class SleepBlock < ActiveRecord::Base
     @finish_invalid = true
   end
 
+  def self.human_attribute_name(name, options = {})
+    name = name.to_s
+    {'start_string' => 'Start time', 'finish_string' => 'Finish time'}[name] || name.humanize
+  end
+
+  def start_valid
+    return true if @start_valid.nil?
+    @start_valid
+  end
+  alias start_valid? start_valid
+
   def start_string
     @start_string || start_time.try(:to_s, :md_hm)
   end
@@ -118,9 +106,21 @@ class SleepBlock < ActiveRecord::Base
     @finish_string || finish_time.try(:to_s, :md_hm)
   end
 
-  def self.human_attribute_name(name, options = {})
-    name = name.to_s
-    {'start_string' => 'Start time', 'finish_string' => 'Finish time'}[name] || name.humanize
+  def start_string=(start_string)
+    @start_string = start_string
+    return if start_string.blank?
+    begin
+      parsed_time = Chronic.parse(start_string, :context => :past)
+    rescue RuntimeError
+      parsed_time = Chronic.parse(start_string, :context => :none)
+    end
+    if parsed_time.present?
+      self.start_time = parsed_time
+    else
+      self.start_valid = false
+    end
+  rescue ArgumentError
+    self.start_valid = false
   end
 
   def to_s
