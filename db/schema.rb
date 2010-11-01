@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101023165145) do
+ActiveRecord::Schema.define(:version => 20101101120221) do
 
   create_table "children", :force => true do |t|
     t.string  "name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20101023165145) do
     t.integer  "child_id"
     t.datetime "start_time"
     t.datetime "finish_time"
+  end
+
+  create_table "tracked_days", :force => true do |t|
+    t.integer "child_id"
+    t.date    "for_date"
+    t.string  "segments"
+    t.float   "sleep_total", :default => 0.0
   end
 
   create_table "users", :force => true do |t|

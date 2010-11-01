@@ -2,6 +2,7 @@ class Child < ActiveRecord::Base
 
   belongs_to :user
   has_many :sleep_blocks, :order => :start_time, :dependent => :destroy
+  has_many :tracked_days, :order => :for_date
 
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false, :scope => :user_id}
 
@@ -21,6 +22,11 @@ class Child < ActiveRecord::Base
     last = sleep_blocks.last
     end_date = last.finish_time ? last.finish_time.to_date : last.start_time.to_date
     (sleep_blocks.first.start_time.to_date..end_date)
+  end
+
+  def sleep_total_in_seconds_for_day(day)
+    return 0.0 if tracked_days.empty?
+    tracked_days.where(:for_date => day).first.try(:sleep_total)
   end
 
   def to_param

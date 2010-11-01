@@ -10,8 +10,50 @@ class SleepBlock < ActiveRecord::Base
   validate :finish_after_start
   validate :no_overlap
 
-  scope :unfinished, where(:finish_time => nil)
+  scope :covering, lambda { |date|
+    where('start_time <= ?', date.to_time.end_of_day).
+    where('finish_time >= ?', date.to_time.beginning_of_day)
+  }
   scope :finished, where('finish_time IS NOT NULL')
+  scope :unfinished, where(:finish_time => nil)
+
+  after_save :update_tracked_days
+
+  def began_before(date)
+    start_time < date.to_time.beginning_of_day
+  end
+
+  def began_on(date)
+    start_time.to_date == date
+  end
+
+  def began_and_ended_on(date)
+    began_on(date) && ended_on(date)
+  end
+
+  def began_before_and_ended_on(date)
+    began_before(date) && ended_on(date)
+  end
+
+  def began_before_and_ended_after(date)
+    began_before(date) && ended_after(date)
+  end
+
+  def began_on_and_ended_after(date)
+    began_on(date) && ended_after(date)
+  end
+
+  def ended_after(date)
+    finish_time > date.to_time.end_of_day
+  end
+
+  def ended_on(date)
+    finish_time.to_date == date
+  end
+
+  def finished?
+    finish_time.present?
+  end
 
   attr_accessor :duration
   attr_writer :start_valid
@@ -114,6 +156,13 @@ class SleepBlock < ActiveRecord::Base
 
   def only_finish_time_or_duration
     errors[:base] << "Please provide a finish time or a duration, but not both" if @finish_string.present? && duration.present?
+  end
+
+  def update_tracked_days
+    return unless finished?
+    (start_time.to_date..finish_time.to_date).each do |date|
+      child.tracked_days.find_or_initialize_by_for_date(date).recalculate
+    end
   end
 
 end

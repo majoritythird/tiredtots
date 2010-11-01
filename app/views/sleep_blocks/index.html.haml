@@ -29,6 +29,7 @@
             - else
               %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
           - the_time += 10.minutes
+        .total= friendly_sleep_total(child.sleep_total_in_seconds_for_day(date))
 
 - if child.unfinished_sleep_block?
   %h2.clear Open sleep block

@@ -27,7 +27,7 @@ Feature: User creates a sleep block
     Then I should see "Jan 1 4:00pm" in the "Start time" field
 
   Scenario: finishing a sleep block
-    Given it is currently "Jan 1 2010"
+    Given it is currently "Jan 1 2010 4pm"
     And I am signed in
     And I have the following child:
       | name | Alex |
@@ -179,3 +179,20 @@ Feature: User creates a sleep block
     When I follow a bookmark to the sleep graph page for "Alex"
     Then I should see "You need to sign in or sign up before continuing."
     And I should not see "Sleep journal for Alex"
+
+  @wip
+  Scenario: Bugfix: updating a time from a previous month
+    Given it is currently "Oct 31 2010"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    And that child has the following sleep blocks:
+      | start_time      | finish_time     |
+      | Oct 22 2010 8pm | Oct 23 2010 5am |
+      | Oct 23 2010 1pm | Oct 23 2010 2pm |
+    When I go to the home page
+    And I follow "Alex"
+    And I fill in "Start time" with "Oct 23 7pm"
+    And I press "save"
+    Then I should see "Open sleep block"
+    And I should see "Oct 23 7:00pm" in the "Start time" field

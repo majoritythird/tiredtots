@@ -27,3 +27,7 @@ end
 When /^I follow a bookmark to the sleep graph page for "([^\"]*)"$/ do |child_name|
   visit "/children/alex/sleep_blocks"
 end
+
+Then /^I should see "([^"]*)" on ([^"]*)$/ do |total, day|
+  page.should have_xpath(%|//div[contains(@class,'day #{day.parameterize}')]/div[contains(@class,'total')][contains(normalize-space(.), '#{total}')]|)
+end
