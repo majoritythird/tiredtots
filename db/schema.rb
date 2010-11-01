@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20101101120221) do
     t.integer "child_id"
     t.date    "for_date"
     t.string  "segments"
-    t.float   "sleep_total", :default => 0.0
+    t.integer "sleep_total", :default => 0
   end
 
   create_table "users", :force => true do |t|

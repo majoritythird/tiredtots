@@ -6,7 +6,7 @@ class TrackedDay < ActiveRecord::Base
   }
 
   def recalculate
-    self.sleep_total = 0.0
+    self.sleep_total = 0
     child.sleep_blocks.covering(for_date).each do |sleep_block|
       if sleep_block.began_before_and_ended_on(for_date)
         self.sleep_total += sleep_block.finish_time - for_date.to_time.beginning_of_day
@@ -15,7 +15,7 @@ class TrackedDay < ActiveRecord::Base
       elsif sleep_block.began_on_and_ended_after(for_date)
         self.sleep_total += for_date.to_time.end_of_day - sleep_block.start_time
       elsif sleep_block.began_before_and_ended_after(for_date)
-        self.sleep_total += (60.0 * 60.0 * 24)
+        self.sleep_total += (60 * 60 * 24)
       end
     end
     save!

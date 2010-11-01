@@ -4,7 +4,7 @@ class CreateTrackedDays < ActiveRecord::Migration
       t.belongs_to :child
       t.date :for_date
       t.string :segments
-      t.float :sleep_total, :default => 0.0
+      t.integer :sleep_total, :default => 0
     end
   end
 
