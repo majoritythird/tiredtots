@@ -180,9 +180,8 @@ Feature: User creates a sleep block
     Then I should see "You need to sign in or sign up before continuing."
     And I should not see "Sleep journal for Alex"
 
-  @wip
   Scenario: Bugfix: updating a time from a previous month
-    Given it is currently "Oct 31 2010"
+    Given it is currently "Nov 1 2010"
     And I am signed in
     And I have the following child:
       | name | Alex |

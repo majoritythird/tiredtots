@@ -79,7 +79,11 @@ class SleepBlock < ActiveRecord::Base
   def start_string=(start_string)
     @start_string = start_string
     return if start_string.blank?
-    parsed_time = Chronic.parse(start_string)
+    begin
+      parsed_time = Chronic.parse(start_string, :context => :past)
+    rescue RuntimeError
+      parsed_time = Chronic.parse(start_string, :context => :none)
+    end
     if parsed_time.present?
       self.start_time = parsed_time
     else
@@ -92,7 +96,11 @@ class SleepBlock < ActiveRecord::Base
   def finish_string=(finish_string)
     @finish_string = finish_string
     return if finish_string.blank?
-    parsed_time = Chronic.parse(finish_string)
+    begin
+      parsed_time = Chronic.parse(finish_string, :context => :past)
+    rescue RuntimeError
+      parsed_time = Chronic.parse(finish_string, :context => :none)
+    end
     if parsed_time.present?
       self.finish_time = parsed_time
     else
