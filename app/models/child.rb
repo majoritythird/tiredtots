@@ -19,14 +19,7 @@ class Child < ActiveRecord::Base
   end
 
   def sleep_data_range
-    last = sleep_blocks.last
-    end_date = last.finish_time ? last.finish_time.to_date : last.start_time.to_date
-    (sleep_blocks.first.start_time.to_date..end_date)
-  end
-
-  def sleep_total_in_seconds_for_day(day)
-    return 0.0 if tracked_days.empty?
-    tracked_days.where(:for_date => day).first.try(:sleep_total)
+    (tracked_days.first.for_date..tracked_days.last.for_date)
   end
 
   def to_param

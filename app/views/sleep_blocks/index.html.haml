@@ -2,7 +2,7 @@
   Sleep journal for
   = child.name
 
-- if sleep_blocks.any?
+- if tracked_days.any?
   .sleep_blocks
     .header
       .date &nbsp;
@@ -13,7 +13,8 @@
         - else
           .hour &nbsp;
         - the_time += 10.minutes
-    - child.sleep_data_range.each do |date|
+    - tracked_days.each do |tracked_day|
+      - date = tracked_day.for_date
       %div(class="day #{date.to_s(:md).parameterize}")
         .date= date.to_s(:md)
         - the_time = Time.parse("12am")
@@ -29,7 +30,7 @@
             - else
               %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
           - the_time += 10.minutes
-        .total= friendly_sleep_total(child.sleep_total_in_seconds_for_day(date))
+        .total= friendly_sleep_total(tracked_day.sleep_total)
 
 - if child.unfinished_sleep_block?
   %h2.clear Open sleep block
