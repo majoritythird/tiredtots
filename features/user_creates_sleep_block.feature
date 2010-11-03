@@ -58,13 +58,13 @@ Feature: User creates a sleep block
     And I press "save"
     Then I should see a sleep block from 2:10pm to 3:50pm on Jan 1
     When I follow "Jan  1"
-    And I follow "Block 1"
+    When I follow "Jan 1 2:10pm - Jan 1 3:50pm"
     And I fill in "Finish time" with ""
     And I fill in "Duration" with "2 hours"
     And I press "save"
     Then I should see a sleep block from 2:10pm to 4:10pm on Jan 1
     When I follow "Jan  1"
-    And I follow "Block 1"
+    When I follow "Jan 1 2:10pm - Jan 1 4:10pm"
     And I fill in "Finish time" with "3pm"
     And I fill in "Duration" with "2 hours"
     And I press "save"

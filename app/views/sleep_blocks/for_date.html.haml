@@ -2,4 +2,5 @@
 
 %ul
   - sleep_blocks.each_with_index do |block, index|
-    %li= link_to "Block #{index+1}", edit_child_sleep_block_path(child, block)
+    %li
+      = link_to block.to_s, edit_child_sleep_block_path(child, block)
