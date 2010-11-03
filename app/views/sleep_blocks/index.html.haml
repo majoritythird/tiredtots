@@ -13,7 +13,7 @@
         - else
           .hour &nbsp;
         - the_time += 10.minutes
-    - tracked_days.each do |tracked_day|
+    - tracked_days.each_with_index do |tracked_day, day_index|
       - date = tracked_day.for_date
       %div(class="day #{date.to_s(:md).parameterize}")
         .date= date.to_s(:md)
@@ -25,7 +25,7 @@
             = link_to edit_child_sleep_block_path(child, block), :id => "#{date.to_s(:md).parameterize}_#{the_time.to_s(:hmm)}", :title => the_time.to_s(:hmm) do
               %div(class="asleep #{the_time.to_s(:hmm)}")
           - else
-            - if child.no_data_for_time_block(time_block)
+            - if (day_index == 0 || day_index == tracked_days.size - 1) && child.no_data_for_time_block(time_block)
               %div(class="no_data #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
             - else
               %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")

@@ -9,12 +9,12 @@ class Child < ActiveRecord::Base
   before_save :set_parameterized_name
 
   def no_data_for_time_block(time)
-    sleep_blocks.finished.none? {|block| block.start_time < time} || sleep_blocks.finished.none? {|block| block.finish_time > time}
+    sleep_blocks.finished.none? {|block| block.start_time.to_i < time.to_i} || sleep_blocks.finished.none? {|block| block.finish_time.to_i > time.to_i}
   end
 
   def sleep_block_covering(time)
     sleep_blocks.finished.select do |block|
-      block.start_time <= time && block.finish_time >= time
+      block.start_time.to_i <= time.to_i && block.finish_time.to_i >= time.to_i
     end.first
   end
 
