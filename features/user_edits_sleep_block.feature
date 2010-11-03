@@ -34,6 +34,9 @@ Feature: User edits sleep block
     When I go to the home page
     And I follow "Alex"
     And I follow "Jan  1"
-    When I follow "Jan 1 2:10pm - Jan 1 4:10pm"
+    And I follow "cancel"
+    Then I should see "Sleep journal for Alex"
+    When I follow "Jan  1"
+    And I follow "Jan 1 2:10pm - Jan 1 4:10pm"
     And I follow "cancel"
     Then I should see "Sleep journal for Alex"

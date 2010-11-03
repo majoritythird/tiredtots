@@ -4,3 +4,5 @@
   - sleep_blocks.each_with_index do |block, index|
     %li
       = link_to block.to_s, edit_child_sleep_block_path(child, block)
+or
+= link_to "cancel", child_sleep_blocks_path(child)
