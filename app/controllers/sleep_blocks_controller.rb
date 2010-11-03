@@ -15,6 +15,7 @@ class SleepBlocksController < ApplicationController
       child.sleep_blocks.build
     end
   end
+  expose(:sleep_blocks) { child.sleep_blocks.covering(Date.parse(params[:date])) }
   expose(:tracked_days) { child.tracked_days }
 
   def create

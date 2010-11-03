@@ -13,9 +13,10 @@ class Child < ActiveRecord::Base
   end
 
   def sleep_block_covering(time)
-    sleep_blocks.finished.select do |block|
-      block.start_time.to_i <= time.to_i && block.finish_time.to_i >= time.to_i
-    end.first
+    time_ranges.each do |time_range|
+      return true if time_range.cover?(time.to_i)
+    end
+    false
   end
 
   def sleep_data_range
@@ -34,6 +35,10 @@ class Child < ActiveRecord::Base
 
   def set_parameterized_name
     self.parameterized_name = name.parameterize
+  end
+
+  def time_ranges
+    @time_ranges ||= sleep_blocks.finished.map { |block| (block.start_time.to_i..block.finish_time.to_i) }
   end
 
 end

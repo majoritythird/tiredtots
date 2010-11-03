@@ -16,20 +16,17 @@
     - tracked_days.each_with_index do |tracked_day, day_index|
       - date = tracked_day.for_date
       %div(class="day #{date.to_s(:md).parameterize}")
-        .date= date.to_s(:md)
-        - the_time = Time.parse("12am")
+        .date= link_to date.to_s(:md), child_sleep_blocks_for_date_path(child, date)
         - 144.times do |index|
           - time_block = date.to_time + (index*10).minutes
-          - block = child.sleep_block_covering(time_block)
-          - if block
-            = link_to edit_child_sleep_block_path(child, block), :id => "#{date.to_s(:md).parameterize}_#{the_time.to_s(:hmm)}", :title => the_time.to_s(:hmm) do
-              %div(class="asleep #{the_time.to_s(:hmm)}")
+          - formatted_time = time_block.to_s(:hmm)
+          - if child.sleep_block_covering(time_block)
+            %div(class="asleep #{formatted_time}" title="#{formatted_time}")
           - else
             - if (day_index == 0 || day_index == tracked_days.size - 1) && child.no_data_for_time_block(time_block)
-              %div(class="no_data #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
+              %div(class="no_data #{formatted_time}" title="#{formatted_time}")
             - else
-              %div(class="awake #{the_time.to_s(:hmm)}" title="#{the_time.to_s(:hmm)}")
-          - the_time += 10.minutes
+              %div(class="awake #{formatted_time}" title="#{formatted_time}")
         .total= friendly_sleep_total(tracked_day.sleep_total)
 
 - if child.unfinished_sleep_block?

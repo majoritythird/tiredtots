@@ -10,7 +10,8 @@ Feature: User deletes sleep block
       | finish_time | 1/1/2010 3:30pm |
     When I go to the home page
     And I follow "Alex"
-    And I follow "jan-1_2:10pm"
+    And I follow "Jan  1"
+    And I follow "Block 1"
     And press "delete"
     Then I should see "Sleep journal for Alex"
     And I should not see a sleep block from 2:10pm to 3:30pm on Jan 1

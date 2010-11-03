@@ -57,12 +57,14 @@ Feature: User creates a sleep block
     And I fill in "Duration" with "1:40"
     And I press "save"
     Then I should see a sleep block from 2:10pm to 3:50pm on Jan 1
-    When I follow "jan-1_2:10pm"
+    When I follow "Jan  1"
+    And I follow "Block 1"
     And I fill in "Finish time" with ""
     And I fill in "Duration" with "2 hours"
     And I press "save"
     Then I should see a sleep block from 2:10pm to 4:10pm on Jan 1
-    When I follow "jan-1_2:10pm"
+    When I follow "Jan  1"
+    And I follow "Block 1"
     And I fill in "Finish time" with "3pm"
     And I fill in "Duration" with "2 hours"
     And I press "save"
@@ -157,19 +159,6 @@ Feature: User creates a sleep block
     And I press "save"
     Then I should not see "Sleep can't overlap existing blocks of sleep"
     And I should see a sleep block from 4:00pm to 4:30pm on Jan 2
-
-  Scenario: canceling the edit of a sleep block
-    Given I am signed in
-    And I have the following child:
-      | name | Alex |
-    And that child has the following sleep block:
-      | start_time  | Jan 1 2010 2:10pm |
-      | finish_time | Jan 1 2010 4:10pm |
-    When I go to the home page
-    And I follow "Alex"
-    And I follow "jan-1_2:10pm"
-    And I follow "cancel"
-    Then I should see "Sleep journal for Alex"
 
   Scenario: following a bookmark to sleep graph page when not signed in
     Given the following user:
