@@ -1,11 +1,13 @@
 Sleepmonster::Application.routes.draw do
   devise_for :users
   resources :children, :only => [:index, :new, :create, :edit, :update] do
-    resources :sleep_blocks, :only => [:index, :create, :edit, :update, :destroy]
+    resources :sleep_blocks, :only => [:index, :create, :edit, :update, :destroy] do
+      collection do
+        get "/:date", :to => "sleep_blocks#for_date", :as => "for_date"
+        get "/page/:page", :to => "sleep_blocks#paged", :as => "paged"
+      end
+    end
   end
-
-  match "/children/:child_id/sleep_blocks/:date", :to => "sleep_blocks#for_date", :as => "child_sleep_blocks_for_date"
-  match "/children/:child_id/sleep_blocks/page/:page", :to => "sleep_blocks#paged", :as => "child_sleep_blocks_paged"
 
   root :to => "welcome#index"
 end

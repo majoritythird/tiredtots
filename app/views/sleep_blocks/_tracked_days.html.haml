@@ -1,7 +1,7 @@
 - tracked_days.each_with_index do |tracked_day, day_index|
   - date = tracked_day.for_date
   %div(class="day #{date.to_s(:md).parameterize}")
-    .date= link_to date.to_s(:md), child_sleep_blocks_for_date_path(child, date)
+    .date= link_to date.to_s(:md), for_date_child_sleep_blocks_path(child, date)
     - 144.times do |index|
       - time_block = date.to_time + (index*10).minutes
       - formatted_time = time_block.to_s(:hmm)
