@@ -44,7 +44,7 @@ Feature: User views sleep graph
     And I follow "home" within "header"
     Then I should see "Welcome"
 
-  @wip @javascript
+  @javascript
   Scenario: paging through older data
     Given it is currently "2010-02-11"
     And I am signed in

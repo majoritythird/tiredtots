@@ -43,10 +43,9 @@ Given /^that child has (\d+) sleep blocks starting on "([^"]*)"$/ do |number, be
 end
 
 Then /^I should see a row for "([^"]*)"$/ do |day|
-  page.should have_xpath(%|//div[contains(@class, "day")][contains(@class, "#{day.parameterize}")]|)
+  page.should have_xpath(%|//div[@class = "day #{day.parameterize}"]|)
 end
 
 Then /^I should not see a row for "([^"]*)"$/ do |day|
-  require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
-  page.should have_no_xpath(%|//div[contains(@class, "day")][contains(@class, "#{day.parameterize}")]|)
+  page.should have_no_xpath(%|//div[@class = "day #{day.parameterize}"]|)
 end
