@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'aaronh-chronic', '0.3.9', :require => 'chronic'
-gem 'chronic_duration', '0.9.2'
 gem 'decent_exposure', '1.0.0.rc1'
 gem 'devise', '1.1.3'
 gem 'factory_girl_rails', '1.0'
