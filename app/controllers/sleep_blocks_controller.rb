@@ -15,8 +15,20 @@ class SleepBlocksController < ApplicationController
       child.sleep_blocks.build
     end
   end
+  expose(:per_page) { 20 }
   expose(:sleep_blocks) { child.sleep_blocks.covering(Date.parse(params[:date])) }
-  expose(:tracked_days) { child.tracked_days }
+  expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).ordered }
+  expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
+
+  def paged
+    html = render_to_string(:partial => 'tracked_days.html.haml', :locals => {:tracked_days => tracked_days})
+    link = if more_tracked_days
+             render_to_string(:partial => 'view_more.html.haml', :locals => {:child => child})
+           else
+             ""
+           end
+    render(:json => {:html => html, :link => link})
+  end
 
   def create
     sleep_block.save

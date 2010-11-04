@@ -43,3 +43,25 @@ Feature: User views sleep graph
     And I follow "Alex"
     And I follow "home" within "header"
     Then I should see "Welcome"
+
+  @wip @javascript
+  Scenario: paging through older data
+    Given it is currently "2010-02-11"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    And that child has 41 sleep blocks starting on "Jan 1 2010"
+    When I go to the home page
+    And I follow "Alex"
+    Then I should see a row for "Feb 10"
+    And I should see a row for "Jan 22"
+    And I should not see a row for "Jan 21"
+    When I follow "view more sleep history"
+    Then I should see a row for "Feb 10"
+    And I should see a row for "Jan 21"
+    And I should see a row for "Jan 2"
+    And I should not see a row for "Jan 1"
+    When I follow "view more sleep history"
+    Then I should see a row for "Feb 10"
+    And I should see a row for "Jan 1"
+    And I should not see "view more sleep history"

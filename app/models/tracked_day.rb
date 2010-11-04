@@ -5,6 +5,9 @@ class TrackedDay < ActiveRecord::Base
     where(:for_date => date)
   }
 
+  scope :paged, lambda { |page, limit| limit(limit).offset(page.to_i*limit.to_i) }
+  scope :ordered, order('for_date desc')
+
   def recalculate
     self.sleep_total = 0
     child.sleep_blocks.covering(for_date).each do |sleep_block|

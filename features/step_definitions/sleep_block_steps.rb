@@ -31,3 +31,22 @@ end
 Then /^I should see "([^"]*)" on ([^"]*)$/ do |total, day|
   page.should have_xpath(%|//div[contains(@class,'day #{day.parameterize}')]/div[contains(@class,'total')][contains(normalize-space(.), '#{total}')]|)
 end
+
+Given /^that child has (\d+) sleep blocks starting on "([^"]*)"$/ do |number, begin_date|
+  time = Time.parse(begin_date).beginning_of_day
+  number.to_i.times do
+    start_time = time
+    finish_time = time + 1.hour
+    @child.sleep_blocks.create(:start_time => start_time, :finish_time => finish_time)
+    time += (60*60*24)
+  end
+end
+
+Then /^I should see a row for "([^"]*)"$/ do |day|
+  page.should have_xpath(%|//div[contains(@class, "day")][contains(@class, "#{day.parameterize}")]|)
+end
+
+Then /^I should not see a row for "([^"]*)"$/ do |day|
+  require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
+  page.should have_no_xpath(%|//div[contains(@class, "day")][contains(@class, "#{day.parameterize}")]|)
+end

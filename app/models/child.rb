@@ -2,7 +2,7 @@ class Child < ActiveRecord::Base
 
   belongs_to :user
   has_many :sleep_blocks, :order => :start_time, :dependent => :destroy
-  has_many :tracked_days, :order => :for_date
+  has_many :tracked_days, :order => 'for_date desc'
 
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false, :scope => :user_id}
 
