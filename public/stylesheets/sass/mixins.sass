@@ -1,7 +1,11 @@
 @import url("/stylesheets/whitespace-reset.css")
 
-= museo_sans($font_weight, $font_size)
-  font: $font_weight $font_size "MuseoSans", Helvetica, Arial, sans-serif
+$low: #7eb33e
+$guarded: #acd250
+$elevated: #eae842
+$high: #eab542
+$severe: #ea4e42
+
 = helvetica_neue($font_weight, $font_size)
   font: $font_weight $font_size "Helvetica Neue", Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
@@ -24,6 +28,10 @@
   -webkit-box-shadow: $arguments
   -moz-box-shadow: $arguments
   box-shadow: $arguments
+= border-image($url, $widths, $scale)
+  -webkit-border-image: url($url) $widths $scale
+  -moz-border-image: url($url) $widths $scale
+  border-image: url($url) $widths $scale
 = opacity($val)
   opacity: $val
   filter: alpha(opacity=$val*100)
@@ -31,58 +39,87 @@
   background-color: $color1
   background-image: -moz-linear-gradient(100% 100% 90deg, $color2, $color1)
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2))
+
 = button
-  padding: 7px 20px 8px 20px
-  font-size: 13px
-  font-weight: bold
+  position: relative
+  padding: 10px 7px
+  +helvetica_neue(bold, 12px)
+  text-transform: uppercase
   color: #ffffff
-  text-shadow: 1px 1px 0 #2586bf
-  text-decoration: none
-  text-transform: lowercase
-  border: 1px solid #34b7ff
   cursor: pointer
-  +border-radius(15px)
-  +gradient-bg(#3bcdff, #2ea2e6)
-  +box-shadow(0 1px 2px rgba(0, 0, 0, .6))
-  overflow: visible
-  &:hover
-    +gradient-bg(#3dd9ff, #31adf5)
-  &:active
-    position: relative
-    top: 1px
-    +gradient-bg(#37c5ff, #30acf3)
-    +box-shadow(0 1px 2px rgba(0, 0, 0, .4))
-= green_button
-  border-color: #57c435
-  +gradient-bg(#63df3c, #4fb02f)
-  overflow: visible
-= gray_button
-  padding: 3px 20px 4px 20px
-  font-size: 12px
+  border: 1px solid #022f7a
   font-weight: bold
-  color: #2da1e4
-  text-decoration: none
-  cursor: pointer
-  border: 1px solid #ccd6db
-  +border-radius(12px)
-  +gradient-bg(#ffffff, #efefef)
-  overflow: visible
-  &:hover
-    +gradient-bg(#ffffff, #f5f5f5)
+  +border-radius(4px)
+  background: #022663 url("/images/bg_button.png") 0 0 repeat-x
   &:active
-    +gradient-bg(#ffffff, #eaeaea)
-    border: 1px solid #b3c0c7
-= button_with_icon($image_url)
-  padding: 5px 15px 7px 5px
-  +helvetica_neue(bold, 13px)
-  color: #3f4142
-  text-decoration: none
-  cursor: pointer
-  border: 1px solid #ccd6db
-  +border-radius(20px)
-  background: #e9e9e9
-  +gradient-bg(#fdfdfd, #e9e9e9)
-  overflow: visible
-  span
-    padding: 1px 0 7px 30px
-    background: transparent url($image_url) 0 0 no-repeat
+    top: 1px
+    border: 1px solid #022560
+= gray_button
+  +button
+  color: #333333
+  +gradient-bg(#f0f0f0, #d6d6d6)
+  border-color: #c8c8c8
+  border-bottom-color: #8a8a8a
+  &:active
+    border-color: #adadad
+
+= small_button
+  position: relative
+  float: left
+  height: 15px
+  padding: 2px 8px
+  +helvetica_neue(bold, 12px)
+  font-size: 12px
+  text-transform: uppercase
+  color: #fff
+  +border-radius(3px)
+  +box-shadow(0 1px 2px #888888)
+  &:active
+    top: 1px
+    border-bottom: 0px
+= small_gray_button
+  +small_button
+  color: #333333
+  border: 1px solid #c8c8c8
+  border-bottom-color: #8a8a8a
+  background: #d7d7d7 url("/images/bg_button_small-gray.png") 0 0 repeat-x
+= small_orange_button
+  +small_button
+  border: 1px solid #e29300
+  border-bottom-color: #713000
+  background: #d45d00 url("/images/bg_button_small-orange.png") 0 0 repeat-x
+= small_dark_gray_button
+  +small_button
+  border: 1px solid #6f6f6f
+  border-bottom-color: #151515
+  background: #2d2d2d url("/images/bg_button_small-dark-gray.png") 0 0 repeat-x
+= small_green_button
+  +small_button
+  border: 1px solid #15bd10
+  border-bottom-color: #065505
+  background: #0ca109 url("/images/bg_button_small-green.png") 0 0 repeat-x
+= row_hovers
+  border-collapse: separate
+  border-spacing: 0
+  tbody
+    tr:hover
+      td
+        padding: 4px 10px
+        border: 1px solid #cddaec
+        border-width: 1px 0
+        background: #f5f9ff
+        cursor: pointer
+        &:first-of-type
+          padding-left: 9px
+          border-left-width: 1px
+        &:last-of-type
+          padding-right: 9px
+          border-right-width: 1px
+= input
+  width: 328px
+  height: 27px
+  padding: 2px 5px
+  margin: 0 0 10px 0
+  +helvetica_neue(normal, 14px)
+  border: 1px solid #c8c8c8
+  +border-radius(2px)

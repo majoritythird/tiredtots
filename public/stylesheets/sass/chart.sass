@@ -1,0 +1,35 @@
+@import "mixins.sass"
+
+.chart_data
+  display: none
+.chart
+  width: 723px
+  position: relative
+  height: 220px
+  .tooltip
+    +opacity(0)
+    position: absolute
+    top: 30px
+    .label
+      position: absolute
+      top: 0
+      left: 0
+      width: 50px
+      margin: 49px 0
+      height: 62px
+      font-size: 12px
+      line-height: 20px
+      background: #fff
+      border: 1px solid #666
+      z-index: 50
+    p
+      text-align: center
+    span
+      display: block
+      position: absolute
+      left: 25px
+      top: 0
+      width: 1px
+      height: 161px
+      background: #666
+      z-index: 49

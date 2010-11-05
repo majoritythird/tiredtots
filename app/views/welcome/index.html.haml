@@ -10,6 +10,21 @@
         - current_user.children.each do |child|
           %li
             = link_to child.name, child_sleep_blocks_path(child)
+            - if child.complete_tracked_days.any?
+              .chart_data
+                %dl
+                  %dt Average
+                  %dd= child.sleep_average_in_hours
+                %table
+                  %thead
+                    %tr
+                      %th day
+                      %th total
+                  %tbody
+                    - child.complete_tracked_days.each do |tracked_day|
+                      %tr
+                        %td= tracked_day.for_date.to_s(:msd)
+                        %td= number_with_precision(tracked_day.sleep_total_in_hours, :precision => 1)
   - else
     To get started,
     = link_to "sign up", new_user_registration_path

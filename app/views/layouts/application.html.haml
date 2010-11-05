@@ -4,7 +4,8 @@
     %title SleepMonster
     %meta(charset="UTF-8")
     = stylesheet_link_tag "sleep_blocks"
-    = javascript_include_tag 'jquery/jquery-1.4.3.min.js'
+    = stylesheet_link_tag "chart"
+    = javascript_include_tag 'jquery/jquery-1.4.3.min', 'graphite/lib/raphael.js', 'graphite/graphite.svg.js'
     = javascript_include_tag :all
   %body
     %header

@@ -2,14 +2,26 @@ class Child < ActiveRecord::Base
 
   belongs_to :user
   has_many :sleep_blocks, :order => :start_time, :dependent => :destroy
-  has_many :tracked_days, :order => 'for_date desc'
+  has_many :tracked_days, :order => 'for_date asc'
 
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false, :scope => :user_id}
 
   before_save :set_parameterized_name
 
+  def complete_tracked_days
+    @complete_tracked_days ||= tracked_days[1..(tracked_days.size-2)]
+  end
+
   def no_data_for_time_block(time)
     sleep_blocks.finished.none? {|block| block.start_time.to_i < time.to_i} || sleep_blocks.finished.none? {|block| block.finish_time.to_i > time.to_i}
+  end
+
+  def sleep_average
+    complete_tracked_days.sum(&:sleep_total) / complete_tracked_days.size
+  end
+
+  def sleep_average_in_hours
+    sleep_average / 3600.0
   end
 
   def sleep_block_covering(time)

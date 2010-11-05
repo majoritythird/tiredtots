@@ -24,4 +24,8 @@ class TrackedDay < ActiveRecord::Base
     save!
   end
 
+  def sleep_total_in_hours
+    sleep_total / 3600.0
+  end
+
 end
