@@ -1,6 +1,13 @@
-Feature: User views list of children
+Feature: User views children list on welcome page
 
-  Scenario: chart of sleep totals
+  Scenario: when not signed in
+    Given I am signed out
+    When I go to the home page
+    Then I should see "sign in"
+    And I should see "sign up"
+    And I should not see "To get started, add a child"
+
+  Scenario: viewing chart of recent sleep totals
     Given I am signed in
     And I have the following child:
       | name | Alex |
