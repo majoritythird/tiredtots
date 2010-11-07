@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
 
   $('.chart_data').each(function(index){
     $(this).before("<div class='chart' id='chart"+index+"'></div>");
-    var $canvas = $(this).prev('.chart');
+    var $chart = $(this).prev('.chart');
     var data = {};
     var $table = $(this).find("table");
     var $dl = $(this).find("dl");
@@ -55,10 +55,10 @@ jQuery(document).ready(function($) {
     data.average = parseFloat($dl.find('dd:first').text());
     data.attr = {}
 
-    var the_chart = buildGraph($canvas, data, opts);
-    var $label = $canvas.find('.label');
+    var the_chart = buildGraph($chart, data, opts);
+    var $label = $chart.find('.label');
     var $total = createAndAppend('p', $label).addClass('total');
-    $canvas.mousemove(function(e) {
+    $chart.mousemove(function(e) {
       var line_x = animateTooltip(the_chart, $(this), e);
       $total.text(data.values[line_x]);
     });
@@ -78,6 +78,26 @@ jQuery(document).ready(function($) {
 
   function buildGraph($chart, data, opts) {
     var graphite = new Graphite($chart, opts);
+
+    var $tags = {
+      tag_x: createAndAppend('div', 'tag_x', $chart),
+      line_x: createAndAppend('span', 'line_x', $chart),
+    }
+    $("<b />").prependTo(createAndAppend('p', '', $tags.tag_x).text('AVG'));
+    var raphael = Raphael($tags.tag_x.attr('id'), $tags.tag_x.width(), $tags.tag_x.height());
+    $tags.tag_x.data('shape', raphael.path("M0 15.5 l5 -15 l35 0 l0 30 l-35 0 l-5 -15"));
+
+    graphite.trigger.afterPath = function(path) {
+      var avg = data.average;
+      var y = graphite.getYOffset(avg);
+      var attrs = {stroke: path.attr.color, fill: path.attr.color};
+      $tags.tag_x.animate({'top': y - ($tags.tag_x.height()/2)}, 100).fadeIn(100);
+      $tags.tag_x.find('b').text(Math.round(avg*10)/10);
+      $tags.tag_x.data('shape').attr(attrs);
+      $tags.line_x.animate({'top': y}, 100).fadeIn(100);
+      $tags.line_x.css({background: path.attr.color});
+    }
+
     var $tooltip = createAndAppend('div', $chart).addClass('tooltip');
     $('<span />').appendTo($tooltip);
     $('<div />').addClass('label').appendTo($tooltip);
@@ -90,11 +110,15 @@ jQuery(document).ready(function($) {
 
     graphite.setLabels(data.labels);
     graphite.addPath(data.path_name, data.values, data.attr);
+
     return graphite;
   }
 
-  function createAndAppend(tag, $target) {
-    var $element = $('<' + tag + ' />');
+  function createAndAppend(tag, id, $target) {
+    var $element = $('<' + tag + ' />').attr("id", id);
+    if(id) {
+      $element.attr("id", id);
+    }
     $element.appendTo($target);
     return $element;
   }
