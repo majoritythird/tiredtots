@@ -25,6 +25,8 @@
                       %tr
                         %td= tracked_day.for_date.to_s(:msd)
                         %td= number_with_precision(tracked_day.sleep_total_in_hours, :precision => 1)
+            - else
+              No sleep has been tracked yet.
   - else
     To get started,
     = link_to "sign up", new_user_registration_path

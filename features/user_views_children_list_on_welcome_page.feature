@@ -36,3 +36,11 @@ Feature: User views children list on welcome page
       | 01/23 | 1.0   |
       | 01/24 | 1.0   |
       | 01/25 | 1.0   |
+
+  Scenario: sleep total chart does not display if child has no sleep tracked
+    Given I am signed in
+    And I have the following child:
+      | name | Alex |
+    When I go to the home page
+    Then I should not see a chart
+    And I should see "No sleep has been tracked yet."
