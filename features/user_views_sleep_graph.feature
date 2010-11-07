@@ -77,3 +77,15 @@ Feature: User views sleep graph
     When I go to the home page
     And I follow "Alex"
     Then I should see "11 pm"
+
+  Scenario: Bugfix: 1am shows up twice on first day of standard time
+    Given it is currently "2010-11-07 at 8pm"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    And that child has the following sleep block:
+      | start_time  | 2010-11-07 2pm |
+      | finish_time | 2010-11-07 4pm |
+    When I go to the home page
+    And I follow "Alex"
+    Then I should see only one block for 1am on Nov 7

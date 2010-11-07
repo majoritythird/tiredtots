@@ -19,9 +19,18 @@ class SleepBlocksController < ApplicationController
   expose(:sleep_blocks) { child.sleep_blocks.covering(Date.parse(params[:date])) }
   expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).descending }
   expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
+  expose(:times) do
+    the_time = Time.parse("2010-01-01 12am")
+    times = []
+    144.times do
+      times << the_time
+      the_time += 10.minutes
+    end
+    times
+  end
 
   def paged
-    html = render_to_string(:partial => 'tracked_days.html.haml', :locals => {:tracked_days => tracked_days})
+    html = render_to_string(:partial => 'tracked_days.html.haml', :locals => {:tracked_days => tracked_days, :times => times})
     link = if more_tracked_days
              render_to_string(:partial => 'view_more.html.haml', :locals => {:child => child})
            else
