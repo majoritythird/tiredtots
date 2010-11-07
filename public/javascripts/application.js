@@ -56,24 +56,6 @@ jQuery(document).ready(function($) {
     data.attr = {}
 
     var the_chart = buildGraph($chart, data, opts);
-    var $label = $chart.find('.label');
-    var $total = createAndAppend('p', $label).addClass('total');
-    $chart.mousemove(function(e) {
-      var line_x = animateTooltip(the_chart, $(this), e);
-      $total.text(data.values[line_x]);
-    });
-
-    function animateTooltip(graphite, $chart, e) {
-      var increment = (graphite.attr('w') - graphite.attr('gutter_x')*2) / (data.labels.length-1);
-      var mouse_x = e.pageX - $chart.offset().left - graphite.attr('gutter_x');
-      var line_x = Math.round(mouse_x / increment);
-      $chart.find('.tooltip').stop().animate({
-        'opacity' : 1,
-        'left' : Math.round(line_x * increment + graphite.attr('gutter_x') - ($label.width()/2))
-      }, 50);
-      return line_x;
-    }
-
   });
 
   function buildGraph($chart, data, opts) {
@@ -82,10 +64,20 @@ jQuery(document).ready(function($) {
     var $tags = {
       tag_x: createAndAppend('div', 'tag_x', $chart),
       line_x: createAndAppend('span', 'line_x', $chart),
+      y_top: createAndAppend('div', 'tag_y_top', $chart),
+      line_y: createAndAppend('span', 'line_y', $chart)
     }
     $("<b />").prependTo(createAndAppend('p', '', $tags.tag_x).text('AVG'));
     var raphael = Raphael($tags.tag_x.attr('id'), $tags.tag_x.width(), $tags.tag_x.height());
     $tags.tag_x.data('shape', raphael.path("M0 15.5 l5 -15 l35 0 l0 30 l-35 0 l-5 -15"));
+
+    $("<b />").prependTo(createAndAppend('p', '', $tags.y_top));
+    raphael = Raphael($tags.y_top.attr('id'), $tags.y_top.width(), $tags.y_top.height());
+    $tags.y_top.data('shape', raphael.path("M0 0 l49 0 l0 15 l-24.5 10 l-24.5 -10 l0 -15 z"));
+
+    graphite.trigger.mouseoutGraph = function() {
+      $('#tag_y_top, #line_y').fadeOut(100);
+    };
 
     graphite.trigger.afterPath = function(path) {
       var avg = data.average;
@@ -98,15 +90,23 @@ jQuery(document).ready(function($) {
       $tags.line_x.css({background: path.attr.color});
     }
 
-    var $tooltip = createAndAppend('div', $chart).addClass('tooltip');
-    $('<span />').appendTo($tooltip);
-    $('<div />').addClass('label').appendTo($tooltip);
+    graphite.trigger.mouseoverPoint = function(point) {
+      point.parent.element.toFront();
+      $.each(point.parent.points, function() {
+        this.element.toFront();
+      });
 
-    $chart.mouseleave(function($i) {
-      $tooltip.stop().animate({
-        'opacity' : 0
-      }, 50);
-    });
+      var attrs = {stroke: point.parent.attr.color, fill: point.parent.attr.color};
+      $tags.y_top.find('b').text(Math.round(point.amount*10)/10);
+
+      x = Math.round(point.x);
+      $tags.y_top.data('shape').attr(attrs);
+      $tags.y_top.animate({'left': x - $tags.y_top.width()/2 + 1}, 100).fadeIn(100);
+      $tags.line_y.animate({'left': x}, 100).fadeIn(100);
+      $tags.line_y.css({background: point.parent.attr.color});
+
+      return point;
+    }
 
     graphite.setLabels(data.labels);
     graphite.addPath(data.path_name, data.values, data.attr);
