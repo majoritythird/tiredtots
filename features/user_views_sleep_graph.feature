@@ -65,3 +65,15 @@ Feature: User views sleep graph
     Then I should see a row for "Feb 10"
     And I should see a row for "Jan 1"
     And I should not see "view more sleep history"
+
+  Scenario: Bugfix: rendering graph on a DST change day doesn't draw the graph labels correctly
+    Given it is currently "2010-11-07 at 8pm"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    And that child has the following sleep block:
+      | start_time  | 2010-11-06 2pm |
+      | finish_time | 2010-11-06 4pm |
+    When I go to the home page
+    And I follow "Alex"
+    Then I should see "11 pm"

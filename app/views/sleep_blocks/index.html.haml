@@ -15,7 +15,7 @@
   .sleep_blocks
     .header
       .date &nbsp;
-      - the_time = Time.parse("12am")
+      - the_time = Time.parse("2010-01-01 12am")
       - 144.times do |index|
         - if (index % 6).zero?
           .hour= the_time.to_s(:hm)
