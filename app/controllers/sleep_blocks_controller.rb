@@ -17,7 +17,7 @@ class SleepBlocksController < ApplicationController
   end
   expose(:per_page) { 20 }
   expose(:sleep_blocks) { child.sleep_blocks.covering(Date.parse(params[:date])) }
-  expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).ordered }
+  expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).descending }
   expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
 
   def paged

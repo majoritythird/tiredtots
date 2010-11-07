@@ -8,20 +8,20 @@ class Child < ActiveRecord::Base
 
   before_save :set_parameterized_name
 
-  def complete_tracked_days
-    @complete_tracked_days ||= tracked_days.ordered.limit(21).reverse
+  def recent_tracked_days
+    @recent_tracked_days ||= tracked_days.descending.recent.reverse
   end
 
   def no_data_for_time_block(time)
     sleep_blocks.finished.none? {|block| block.start_time.to_i < time.to_i} || sleep_blocks.finished.none? {|block| block.finish_time.to_i > time.to_i}
   end
 
-  def sleep_average
-    complete_tracked_days.to_a.sum(&:sleep_total) / complete_tracked_days.size
+  def recent_sleep_average
+    recent_tracked_days.to_a.sum(&:sleep_total) / recent_tracked_days.size
   end
 
-  def sleep_average_in_hours
-    sleep_average / 3600.0
+  def recent_sleep_average_in_hours
+    recent_sleep_average / 3600.0
   end
 
   def sleep_block_covering(time)

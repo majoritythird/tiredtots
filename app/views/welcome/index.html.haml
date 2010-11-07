@@ -10,18 +10,18 @@
         - current_user.children.each do |child|
           %li
             = link_to child.name, child_sleep_blocks_path(child)
-            - if child.complete_tracked_days.any?
+            - if child.recent_tracked_days.any?
               .chart_data
                 %dl
                   %dt Average
-                  %dd= child.sleep_average_in_hours
+                  %dd= child.recent_sleep_average_in_hours
                 %table
                   %thead
                     %tr
                       %th day
                       %th total
                   %tbody
-                    - child.complete_tracked_days.each do |tracked_day|
+                    - child.recent_tracked_days.each do |tracked_day|
                       %tr
                         %td= tracked_day.for_date.to_s(:msd)
                         %td= number_with_precision(tracked_day.sleep_total_in_hours, :precision => 1)
