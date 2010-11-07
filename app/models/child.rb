@@ -9,7 +9,7 @@ class Child < ActiveRecord::Base
   before_save :set_parameterized_name
 
   def complete_tracked_days
-    @complete_tracked_days ||= tracked_days[1..(tracked_days.size-2)]
+    @complete_tracked_days ||= tracked_days.ordered.limit(21).reverse
   end
 
   def no_data_for_time_block(time)
@@ -17,7 +17,7 @@ class Child < ActiveRecord::Base
   end
 
   def sleep_average
-    complete_tracked_days.sum(&:sleep_total) / complete_tracked_days.size
+    complete_tracked_days.to_a.sum(&:sleep_total) / complete_tracked_days.size
   end
 
   def sleep_average_in_hours
