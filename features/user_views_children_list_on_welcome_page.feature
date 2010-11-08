@@ -7,7 +7,7 @@ Feature: User views children list on welcome page
     And I should see "sign up"
     And I should not see "To get started, add a child"
 
-  Scenario: viewing chart of recent sleep totals
+  Scenario: views chart for recent 21 days minus the current day
     Given I am signed in
     And I have the following child:
       | name | Alex |
@@ -15,6 +15,7 @@ Feature: User views children list on welcome page
     When I go to the home page
     Then I should see the following table:
       | day   | total |
+      | 01/04 | 1.0   |
       | 01/05 | 1.0   |
       | 01/06 | 1.0   |
       | 01/07 | 1.0   |
@@ -35,7 +36,6 @@ Feature: User views children list on welcome page
       | 01/22 | 1.0   |
       | 01/23 | 1.0   |
       | 01/24 | 1.0   |
-      | 01/25 | 1.0   |
 
   Scenario: sleep total chart does not display if child has no sleep tracked
     Given I am signed in

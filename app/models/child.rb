@@ -9,7 +9,7 @@ class Child < ActiveRecord::Base
   before_save :set_parameterized_name
 
   def recent_tracked_days
-    @recent_tracked_days ||= tracked_days.descending.recent.reverse
+    @recent_tracked_days ||= tracked_days.descending.recent.offset(1).reverse
   end
 
   def no_data_for_time_block(time)
