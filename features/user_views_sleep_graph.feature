@@ -66,7 +66,7 @@ Feature: User views sleep graph
     And I should see a row for "Jan 1"
     And I should not see "view more sleep history"
 
-  Scenario: Bugfix: rendering graph on a DST change day doesn't draw the graph labels correctly
+  Scenario: On DST transition day, draw graph labels correcty
     Given it is currently "2010-11-07 at 8pm"
     And I am signed in
     And I have the following child:
@@ -78,7 +78,7 @@ Feature: User views sleep graph
     And I follow "Alex"
     Then I should see "11 pm"
 
-  Scenario: Bugfix: 1am shows up twice on first day of standard time
+  Scenario: On first day of standard time, render the 1am, 2am and 3am blocks once
     Given it is currently "2010-11-07 at 8pm"
     And I am signed in
     And I have the following child:
@@ -89,3 +89,19 @@ Feature: User views sleep graph
     When I go to the home page
     And I follow "Alex"
     Then I should see only one block for 1am on Nov 7
+    And I should see only one block for 2am on Nov 7
+    And I should see only one block for 3am on Nov 7
+
+  Scenario: On first day of daylight savings time, render the 1am, 2am and 3am blocks once
+    Given it is currently "2010-03-14 at 8pm"
+    And I am signed in
+    And I have the following child:
+      | name | Alex |
+    And that child has the following sleep block:
+      | start_time  | 2010-03-14 2pm |
+      | finish_time | 2010-03-14 4pm |
+    When I go to the home page
+    And I follow "Alex"
+    Then I should see only one block for 1am on Mar 14
+    And I should see only one block for 2am on Mar 14
+    And I should see only one block for 3am on Mar 14
