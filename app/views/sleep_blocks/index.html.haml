@@ -15,12 +15,12 @@
   .sleep_blocks
     .header
       .date &nbsp;
-      - times.each_with_index do |time, index|
+      - ten_minute_times.each_with_index do |ten_minute_time, index|
         - if (index % 6).zero?
-          .hour= time.to_s(:hm)
+          .hour= ten_minute_time.to_s(:hm)
         - else
           .hour &nbsp;
     .days
-      = render :partial => 'tracked_days', :locals => {:tracked_days => tracked_days, :times => times}
+      = render :partial => 'tracked_days', :locals => {:tracked_days => tracked_days, :ten_minute_times => ten_minute_times}
     - if more_tracked_days
       = render :partial => 'view_more', :locals => {:child => child}

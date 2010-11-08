@@ -2,6 +2,8 @@ class SleepBlocksController < ApplicationController
   before_filter :authenticate_user!
 
   expose(:child) { current_user.children.find_by_parameterized_name params[:child_id] }
+  expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
+  expose(:per_page) { 20 }
   expose(:sleep_block) do
     if child.sleep_blocks.unfinished.any? && params[:id].nil?
       child.sleep_blocks.unfinished.first
@@ -15,11 +17,8 @@ class SleepBlocksController < ApplicationController
       child.sleep_blocks.build
     end
   end
-  expose(:per_page) { 20 }
   expose(:sleep_blocks) { child.sleep_blocks.covering(Date.parse(params[:date])) }
-  expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).descending }
-  expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
-  expose(:times) do
+  expose(:ten_minute_times) do
     the_time = Time.parse("2010-01-01 12am")
     times = []
     144.times do
@@ -28,9 +27,10 @@ class SleepBlocksController < ApplicationController
     end
     times
   end
+  expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).descending }
 
   def paged
-    html = render_to_string(:partial => 'tracked_days.html.haml', :locals => {:tracked_days => tracked_days, :times => times})
+    html = render_to_string(:partial => 'tracked_days.html.haml', :locals => {:tracked_days => tracked_days, :ten_minute_times => ten_minute_times})
     link = if more_tracked_days
              render_to_string(:partial => 'view_more.html.haml', :locals => {:child => child})
            else

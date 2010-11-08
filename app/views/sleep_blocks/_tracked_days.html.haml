@@ -2,9 +2,9 @@
   - date = tracked_day.for_date
   %div(class="day #{date.to_s(:md).parameterize}")
     .date= link_to date.to_s(:md), for_date_child_sleep_blocks_path(child, date)
-    - times.each do |time|
-      - time_block = Time.parse(date.strftime("%Y-%m-%d ").concat(time.to_s(:hmm)))
-      - formatted_time = time_block.to_s(:hmm)
+    - ten_minute_times.each do |ten_minute_time|
+      - formatted_time = ten_minute_time.to_s(:hmm)
+      - time_block = Time.parse(date.strftime("%Y-%m-%d ").concat(formatted_time))
       - if child.sleep_block_covering(time_block)
         %div(class="asleep #{formatted_time}" title="#{formatted_time}")
       - else
