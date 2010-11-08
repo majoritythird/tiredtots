@@ -11,10 +11,11 @@ jQuery(document).ready(function($) {
   var opts = {
     gutter_x: 30,
     gutter_y: 30,
-    max_y_value: 24,
+    max_y_value: 20,
     grid: {
-      draw_y: false,
-      color: "#d7d7d7"
+      draw_y: true,
+      color: "#d7d7d7",
+      gap_y: 4
     },
     point: {
       radius: 4
@@ -27,9 +28,9 @@ jQuery(document).ready(function($) {
     },
     labels_y: {
       draw: true,
-      count: 2,
       adj_x: -10,
-      font: "bold 11px Arial"
+      font: "bold 11px Arial",
+      increment: 4
     },
     labels_x: {
       draw: true,
