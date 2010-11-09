@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :claim_token, :email, :name, :password, :password_confirmation, :remember_me
 
-  has_many :children
+  has_many :children, :dependent => :destroy
 
 end
