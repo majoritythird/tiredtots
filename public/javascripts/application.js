@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
     $tags.y_top.data('shape', raphael.path("M0 0 l49 0 l0 15 l-24.5 10 l-24.5 -10 l0 -15 z"));
 
     graphite.trigger.mouseoutGraph = function() {
-      $('#tag_y_top, #line_y').fadeOut(100);
+      $('.tag_y_top, .line_y').fadeOut(100);
     };
 
     graphite.trigger.afterPath = function(path) {
