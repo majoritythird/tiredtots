@@ -1,6 +1,6 @@
 Then /^I should see only one block for ([^\"]*) on ([^\"]*)$/ do |time, day|
   time = Time.parse(time)
-  page.should have_xpath(%|//div[@class = 'day #{day.parameterize}']/div[contains(@class,' #{time.to_s(:hmm)}')]|, :count => 1)
+  page.should have_xpath(%|//div[#{contains_class(day.parameterize)}]/div[#{contains_class(time.to_s(:hmm))}]|, :count => 1)
 end
 
 Then /^I should see a sleep block from ([^\"]*) to ([^\"]*) on ([^\"]*)$/ do |start, finish, day|
