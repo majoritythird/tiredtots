@@ -43,4 +43,4 @@ Feature: User views children list on welcome page
       | name | Alex |
     When I go to the home page
     Then I should not see a chart
-    And I should see "No sleep has been tracked yet."
+    And I should see "Not enough data to chart yet."
