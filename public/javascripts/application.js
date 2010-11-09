@@ -56,23 +56,23 @@ jQuery(document).ready(function($) {
     data.average = parseFloat($dl.find('dd:first').text());
     data.attr = {}
 
-    var the_chart = buildGraph($chart, data, opts);
+    buildGraph($chart, data, opts, index);
   });
 
-  function buildGraph($chart, data, opts) {
+  function buildGraph($chart, data, opts, index) {
     var graphite = new Graphite($chart, opts);
 
     var $tags = {
-      tag_x: createAndAppend('div', 'tag_x', $chart),
-      line_x: createAndAppend('span', 'line_x', $chart),
-      y_top: createAndAppend('div', 'tag_y_top', $chart),
-      line_y: createAndAppend('span', 'line_y', $chart)
+      tag_x: createAndAppend('div', $chart, 'tag_x_'+index, 'tag_x'),
+      line_x: createAndAppend('span', $chart, 'line_x_'+index, 'line_x'),
+      y_top: createAndAppend('div', $chart, 'tag_y_top_'+index, 'tag_y_top'),
+      line_y: createAndAppend('span', $chart, 'line_y_'+index, 'line_y')
     }
-    $("<b />").prependTo(createAndAppend('p', '', $tags.tag_x).text('AVG'));
+    $("<b />").prependTo(createAndAppend('p', $tags.tag_x, '').text('AVG'));
     var raphael = Raphael($tags.tag_x.attr('id'), $tags.tag_x.width(), $tags.tag_x.height());
     $tags.tag_x.data('shape', raphael.path("M0 15.5 l5 -15 l35 0 l0 30 l-35 0 l-5 -15"));
 
-    $("<b />").prependTo(createAndAppend('p', '', $tags.y_top));
+    $("<b />").prependTo(createAndAppend('p', $tags.y_top, ''));
     raphael = Raphael($tags.y_top.attr('id'), $tags.y_top.width(), $tags.y_top.height());
     $tags.y_top.data('shape', raphael.path("M0 0 l49 0 l0 15 l-24.5 10 l-24.5 -10 l0 -15 z"));
 
@@ -100,7 +100,7 @@ jQuery(document).ready(function($) {
       var attrs = {stroke: point.parent.attr.color, fill: point.parent.attr.color};
       $tags.y_top.find('b').text(Math.round(point.amount*10)/10);
 
-      x = Math.round(point.x);
+      var x = Math.round(point.x);
       $tags.y_top.data('shape').attr(attrs);
       $tags.y_top.animate({'left': x - $tags.y_top.width()/2 + 1}, 100).fadeIn(100);
       $tags.line_y.animate({'left': x}, 100).fadeIn(100);
@@ -115,11 +115,12 @@ jQuery(document).ready(function($) {
     return graphite;
   }
 
-  function createAndAppend(tag, id, $target) {
-    var $element = $('<' + tag + ' />').attr("id", id);
-    if(id) {
+  function createAndAppend(tag, $target, id, class) {
+    var $element = $('<' + tag + ' />');
+    if(id)
       $element.attr("id", id);
-    }
+    if(class)
+      $element.attr("class", class);
     $element.appendTo($target);
     return $element;
   }
