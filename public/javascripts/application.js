@@ -115,12 +115,12 @@ jQuery(document).ready(function($) {
     return graphite;
   }
 
-  function createAndAppend(tag, $target, id, class) {
+  function createAndAppend(tag, $target, id, css_class) {
     var $element = $('<' + tag + ' />');
     if(id)
       $element.attr("id", id);
-    if(class)
-      $element.attr("class", class);
+    if(css_class)
+      $element.attr("class", css_class);
     $element.appendTo($target);
     return $element;
   }
