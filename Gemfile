@@ -15,6 +15,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rspec-rails',        '2.1'
   gem 'ruby-debug19', '0.11.6'
 end
 
@@ -25,10 +26,5 @@ group :test do
   gem 'database_cleaner', '0.5.2'
   gem 'escape_utils', '0.1.9'
   gem 'launchy', '0.3.7'
-  gem 'rspec',              '2.1'
-  gem 'rspec-core',         '2.1'
-  gem 'rspec-expectations', '2.1'
-  gem 'rspec-mocks',        '2.1'
-  gem 'rspec-rails',        '2.1'
   gem 'timecop', '0.3.5'
 end

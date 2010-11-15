@@ -17,7 +17,7 @@ class TrackedDay < ActiveRecord::Base
       elsif sleep_block.began_and_ended_on(for_date)
         self.sleep_total += sleep_block.finish_time - sleep_block.start_time
       elsif sleep_block.began_on_and_ended_after(for_date)
-        self.sleep_total += for_date.to_time.end_of_day - sleep_block.start_time
+        self.sleep_total += (for_date.to_time.end_of_day - sleep_block.start_time).round
       elsif sleep_block.began_before_and_ended_after(for_date)
         self.sleep_total += (60 * 60 * 24)
       end
