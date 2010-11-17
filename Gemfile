@@ -8,7 +8,7 @@ gem 'haml', '3.0.22'
 gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'home_run', '0.9.4'
 gem 'mysql', '2.8.1'
-gem 'rails', '3.0.2'
+gem 'rails', '3.0.3'
 
 group :development do
   gem 'heroku', '1.11.0'
