@@ -1,0 +1,88 @@
+.block
+  position: relative
+  padding: 20px
+  border: 1px solid #e0e7ea
+  +border-radius(9px)
+  background: #ffffff
+  background-image: -moz-linear-gradient(100% 100% 90deg, #f2f4f4 20%, #ffffff 80%)
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, color-stop(.8, #ffffff), color-stop(.2, #f2f4f4))
+  h2
+    padding: 0 0 20px 0
+    +museo_sans(normal, 18px)
+  &:after
+    content: "."
+    text-indent: -8327px
+    display: block
+    position: absolute
+    bottom: -22px
+    left: 0
+    height: 21px
+    width: 50%
+    background: url(/images/block_shadow_grey.png) repeat-x bottom left
+  &:before
+    content: "."
+    text-indent: -8327px
+    display: block
+    position: absolute
+    bottom: -22px
+    right: 0
+    height: 21px
+    width: 50%
+    background: url(/images/block_shadow_grey.png) repeat-x bottom right
+
+form
+  .error
+    background: #ffe3d9
+    +border-radius(5px)
+    color: #e45d2e
+    font-weight: bold
+    margin: -26px -29px 30px -29px
+    padding: 7px 20px
+    text-align: center
+  ul.error
+    padding-left: 38px
+    text-align: left
+    li
+      padding: 0 0 5px 0
+      list-style: disc
+  span.or
+    margin: 25px 20px 0 20px
+    font-weight: bold
+  dt
+    padding: 0 0 3px 5px
+    span.instruction
+      font-style: italic
+      font-size: 12px
+  label
+    font-weight: bold
+  dd
+    padding: 0 0 25px 0
+  small
+    display: block
+    font-size: 11px
+    line-height: 20px
+    font-weight: bold
+    color: #5c5f61
+  input[type="text"], input[type="password"], input[type="email"], input[type="phone"]
+    width: 228px
+    height: 24px
+    padding: 2px 5px
+    border: 1px solid #dae2e6
+    +border-radius(4px)
+    font-size: 14px
+    color: #3f4142
+  textarea
+    font-size: 12px
+    color: #3f4142
+    padding: 5px 10px
+    line-height: 16px
+    border: 1px solid #dae2e6
+    +border-radius(4px)
+  fieldset.actions
+    font-size: 12px
+    a
+      color: #2ea1e4
+    button[type="submit"], input[type="submit"]
+      -webkit-font-smoothing: antialiased
+      +button
+      margin: 0 10px 0 0

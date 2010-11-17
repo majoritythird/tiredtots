@@ -3,10 +3,20 @@
     %ul.errors
       - sleep_block.errors.full_messages.each do |error_message|
         %li= error_message
-  = f.label :start_string
-  = f.text_field :start_string
-  = f.label :finish_string
-  = f.text_field :finish_string
-  = f.label :duration
-  = f.text_field :duration
-  = f.submit "save"
+  %fieldset
+    %dl
+      %dt
+        = f.label :start_string
+        %span.instruction (e.g. yesterday at 8pm; 3:15pm; Jan 12 at 1:30pm)
+      %dd= f.text_field :start_string
+    %dl.left
+      %dt= f.label :finish_string
+      %dd= f.text_field :finish_string
+    %span.left.or or
+    %dl.left
+      %dt
+        = f.label :duration
+        %span.instruction (e.g. 2 hours; 1:35; 0:45)
+      %dd= f.text_field :duration
+  %fieldset.actions
+    = f.submit "save"
