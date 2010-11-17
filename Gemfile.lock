@@ -181,3 +181,6 @@ DEPENDENCIES
   rspec-rails (= 2.1)
   ruby-debug19 (= 0.11.6)
   timecop (= 0.3.5)
+
+METADATA
+  version: 1.0.6
