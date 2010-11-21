@@ -47,8 +47,8 @@ Given /^that child has (\d+) sleep blocks starting on "([^"]*)"$/ do |number, be
   end
 end
 
-Then /^I should see a row for "([^"]*)"$/ do |day|
-  page.should have_xpath(%|//div[@class = "day #{day.parameterize}"]|)
+Then /^I should see one row for "([^"]*)"$/ do |day|
+  page.should have_xpath(%|//div[@class = "day #{day.parameterize}"]|, :count => 1)
 end
 
 Then /^I should not see a row for "([^"]*)"$/ do |day|
