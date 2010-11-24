@@ -3,6 +3,8 @@ jQuery(document).ready(function($) {
   $('.sleep_blocks a#pager').live('click', function(event) {
     event.preventDefault();
     var pager = $(this);
+    pager.hide();
+    $(this).next('.cloaked').show();
     $.get($(this).attr('href'), function(json) {
       $('.sleep_blocks .days').append(json.html);
       $(pager).parent('div').replaceWith(json.link);
