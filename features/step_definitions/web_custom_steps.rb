@@ -13,3 +13,7 @@ end
 Then /^I should see nothing in the "([^"]*)" field$/ do |field|
   field_labeled(field).value.should be_nil
 end
+
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field|
+  field_labeled(field).node.xpath("./option[contains(@value,'#{value}')][contains(@selected,'selected')]").should_not be_empty
+end
