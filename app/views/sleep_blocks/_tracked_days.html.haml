@@ -4,7 +4,7 @@
     .date= link_to date.to_s(:md), for_date_child_sleep_blocks_path(child, date)
     - ten_minute_times.each do |ten_minute_time|
       - formatted_time = ten_minute_time.to_s(:hmm)
-      - time_block = Time.parse(date.strftime("%Y-%m-%d ").concat(formatted_time))
+      - time_block = Time.zone.parse(date.strftime("%Y-%m-%d ").concat(formatted_time))
       - if child.sleep_block_covering(time_block)
         %div(class="asleep #{formatted_time}" title="#{formatted_time}")
       - else

@@ -11,8 +11,8 @@ class SleepBlock < ActiveRecord::Base
   validate :no_overlap
 
   scope :covering, lambda { |date|
-    where('start_time <= ?', date.to_time.end_of_day).
-    where('finish_time >= ?', date.to_time.beginning_of_day)
+    where('start_time <= ?', Time.zone.parse(date.to_s).end_of_day).
+    where('finish_time >= ?', Time.zone.parse(date.to_s).beginning_of_day)
   }
   scope :finished, where('finish_time IS NOT NULL')
   scope :unfinished, where(:finish_time => nil)
@@ -23,7 +23,7 @@ class SleepBlock < ActiveRecord::Base
   attr_writer :start_valid
 
   def began_before(date)
-    start_time < date.to_time.beginning_of_day
+    start_time < Time.zone.parse(date.to_s).beginning_of_day
   end
 
   def began_on(date)
@@ -59,7 +59,7 @@ class SleepBlock < ActiveRecord::Base
   end
 
   def ended_after(date)
-    finish_time > date.to_time.end_of_day
+    finish_time > Time.zone.parse(date.to_s).end_of_day
   end
 
   def ended_on(date)
