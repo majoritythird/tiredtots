@@ -1,7 +1,8 @@
 Feature: User edits sleep block
 
   Scenario: when multiple blocks overlap a day
-    Given I am signed in
+    Given it is currently "1/4/2010"
+    And I am signed in
     And I have the following child:
       | name | Alex |
     And that child has the following sleep blocks:
