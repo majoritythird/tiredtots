@@ -11,7 +11,7 @@ gem 'mysql', '2.8.1'
 gem 'rails', '3.0.3'
 
 group :development do
-  gem 'heroku', '1.11.0'
+  gem 'heroku', '1.16.2'
   gem 'taps', '0.3.14'
 end
 

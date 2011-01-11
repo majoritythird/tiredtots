@@ -80,7 +80,7 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     haml (3.0.22)
-    heroku (1.11.0)
+    heroku (1.16.2)
       json_pure (>= 1.2.0, < 1.5.0)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
@@ -187,7 +187,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.0)
   haml (= 3.0.22)
   hassle!
-  heroku (= 1.11.0)
+  heroku (= 1.16.2)
   home_run (= 0.9.4)
   launchy (= 0.3.7)
   mysql (= 2.8.1)
