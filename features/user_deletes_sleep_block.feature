@@ -10,7 +10,7 @@ Feature: User deletes sleep block
       | finish_time | 1/1/2010 3:30pm |
     When I go to the home page
     And I follow "Alex"
-    And I follow "Jan  1"
+    And I follow "Jan 1"
     When I follow "Jan 1 2:10pm - Jan 1 3:30pm"
     And press "delete"
     Then I should see "Sleep journal for Alex"

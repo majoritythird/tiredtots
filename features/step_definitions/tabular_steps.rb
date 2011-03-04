@@ -20,7 +20,7 @@ Then /^(?:|I )should see the following table:$/ do |table|
       end
       raise "No such heading: #{title}" unless heading
       column = heading.parent.children.select{|e| e.name == 'th'}.reject(&:blank?).index(heading)
-      page.should have_xpath("//tr[#{row+1}]/td[#{column+1}]/descendant-or-self::*[contains(normalize-space(.), #{Capybara::XPath.escape(value)})]")
+      page.should have_xpath("//tr[#{row+1}]/td[#{column+1}]/descendant-or-self::*[contains(normalize-space(.), '#{value}')]")
     end
   end
 end
