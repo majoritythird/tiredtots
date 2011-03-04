@@ -86,3 +86,16 @@
   span
     padding: 1px 0 7px 30px
     background: transparent url($image_url) 0 0 no-repeat
+@mixin pie-clearfix
+  &:after
+    content    : "\0020"
+    display    : block
+    height     : 0
+    clear      : both
+    overflow   : hidden
+    visibility : hidden
+  * html &
+    height: 1px
+@mixin guttered
+  margin: 0px auto
+  width: 960px

@@ -1,8 +1,8 @@
 %h1 Your Children
 
+%p= link_to "Add a child", new_child_path
 %ul.children
-  = link_to "add a child", new_child_path
   - children.each do |child|
-    %li
+    %li.child
       = link_to child.name, child_sleep_blocks_path(child)
       = link_to "edit", edit_child_path(child)

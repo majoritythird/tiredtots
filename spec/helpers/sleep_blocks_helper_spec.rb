@@ -6,12 +6,12 @@ describe SleepBlocksHelper do
 
     context "returns a friendly string with no precision given an even number of hours" do
       let(:seconds) { 3600.0 }
-      it { should == "1 hour"}
+      it { should == "1 hr"}
     end
 
     context "returns a friendly string with precision given fractional minutes" do
       let(:seconds) { 22390.0 }
-      it { should == "6.2 hours"}
+      it { should == "6.2 hrs"}
     end
 
     context "returns an empty string given nil" do

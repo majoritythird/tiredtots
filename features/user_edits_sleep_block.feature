@@ -11,7 +11,7 @@ Feature: User edits sleep block
       | Jan 2 2010 1pm | Jan 2 2010 2pm |
       | Jan 2 2010 7pm | Jan 3 2010 6pm |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I follow "Jan 2"
     Then I should see "Sleep blocks for 2010-01-02"
     When I follow "Jan 1 7:00pm - Jan 2 6:00am"
@@ -33,7 +33,7 @@ Feature: User edits sleep block
       | start_time  | Jan 1 2010 2:10pm |
       | finish_time | Jan 1 2010 4:10pm |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I follow "Jan 1"
     And I follow "cancel"
     Then I should see "Sleep journal for Alex"

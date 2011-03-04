@@ -1,34 +1,51 @@
-@import "mixins.sass"
+@import "mixins.sass", "common.sass"
 
 body
-  font: normal 14px Helvetica, Arial, sans-serif
-  color: #3f4142
-  background: #3f4142
-fieldset.actions
-  input[type="submit"]
-    +button
-label.checkbox
-  display: block
-  clear: both
-  padding: 0 0 20px 0
-  font-weight: bold
-  input
-    margin: 0 5px 0 0
-a.button
-  +button
+  margin: 0
+  padding: 0
 
-p.alert, p.notice
-  width: 430px
-  padding: 8px 15px !important
-  margin: -25px auto 25px auto
-  font-size: 14px
-  font-weight: bold
-  color: #e45d2e
-  text-align: center
-  border: 1px solid #e1af9d
-  +border-radius(7px)
-  background: #ffe3d9
-p.notice
-  color: #62b634
-  border-color: #a9d795
-  background: #defecf
+.cloaked
+  display: none
+
+p
+  margin: 8px 0
+
+h1
+  margin: 8px 0
+  font-size: 18px
+h2
+  margin: 6px 0
+
+header
+  @include pie-clearfix
+  padding: 10px 0
+  border-bottom: 1px solid #000
+  section
+    @include guttered
+    nav#primary
+      float: left
+    nav#secondary
+      float: right
+    nav#secondary
+
+#main
+  @include guttered
+  margin-top: 10px
+
+.children_header
+  @include pie-clearfix
+  margin-top: 20px
+  .title
+    float: left
+  .action
+    float: right
+
+ul.children
+  li.child
+    padding: 10px
+    &.even
+      background-color: #f2f2f2
+    &.odd
+      background-color: #e3e3e3
+    .child_name
+      font-weight: bold

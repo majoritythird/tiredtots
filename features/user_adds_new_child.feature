@@ -38,8 +38,8 @@ Feature: User adds new child
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "manage your children"
-    And I follow "add a child"
+    And I follow "Manage your children"
+    And I follow "Add a child"
     And I fill in "Name" with "Alex"
     And I press "save"
     Then I should see "Name has already been taken"
@@ -70,8 +70,8 @@ Feature: User adds new child
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "manage your children"
-    And I follow "add a child"
+    And I follow "Manage your children"
+    And I follow "Add a child"
     And I follow "cancel"
     Then I should see "Your Children"
     And I should see "Alex"

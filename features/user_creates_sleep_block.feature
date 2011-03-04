@@ -7,7 +7,7 @@ Feature: User creates a sleep block
       | name | Alex |
     When I go to the home page
     Then I should not see "To get started"
-    When I follow "Alex"
+    When I follow "Sleep journal"
     Then I should see "Sleep journal for Alex"
     When I fill in "Start time" with "2:15PM"
     And I press "save"
@@ -21,7 +21,7 @@ Feature: User creates a sleep block
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Start time" with "yesterday at 4pm"
     And I press "save"
     Then I should see "Jan 1 4:00pm" in the "Start time" field
@@ -35,7 +35,7 @@ Feature: User creates a sleep block
       | start_time  | Jan 1 2010 2:10pm |
       | finish_time |                   |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     Then I should see "Open sleep block"
     And I should see "Jan 1 2:10pm" in the "Start time" field
     When I fill in "Finish time" with "3:30pm"
@@ -53,7 +53,7 @@ Feature: User creates a sleep block
       | start_time  | Jan 1 2010 2:10pm |
       | finish_time |                   |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Duration" with "1:40"
     And I press "save"
     Then I should see a sleep block from 2:10pm to 3:50pm on Jan 1
@@ -80,7 +80,7 @@ Feature: User creates a sleep block
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Start time" with ""
     And I press "save"
     Then I should see "Start time can't be blank"
@@ -93,7 +93,7 @@ Feature: User creates a sleep block
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Start time" with "monkey butter"
     And I fill in "Finish time" with "maybe doughnuts?"
     And I press "save"
@@ -109,7 +109,7 @@ Feature: User creates a sleep block
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Start time" with "3pm"
     And I fill in "Finish time" with "2pm"
     And I press "save"
@@ -131,7 +131,7 @@ Feature: User creates a sleep block
       | Jan 1 2010 2:10pm | Jan 1 2010 4:10pm |
       | Jan 1 2010 7:40pm | Jan 2 2010 7:10am |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Start time" with "Jan 1 2pm"
     And I fill in "Finish time" with "Jan 1 3pm"
     And I press "save"
@@ -179,7 +179,7 @@ Feature: User creates a sleep block
       | Oct 22 2010 8pm | Oct 23 2010 5am |
       | Oct 23 2010 1pm | Oct 23 2010 2pm |
     When I go to the home page
-    And I follow "Alex"
+    And I follow "Sleep journal"
     And I fill in "Start time" with "Oct 23 7pm"
     And I press "save"
     Then I should see "Open sleep block"
