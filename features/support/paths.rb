@@ -7,22 +7,14 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-
     when /the home\s?page/
       '/'
-
     when /the sign in page/
       new_user_session_path
-
     when /the add new child page/
       new_child_path
-
-    # Add more mappings here.
-    # Here is an example that pulls values out of the Regexp:
-    #
-    #   when /^(.*)'s profile page$/i
-    #     user_profile_path(User.find_by_login($1))
-
+    when /the sleep journal page for ([^"]*)$/
+      "/children/#{$1.parameterize}/sleep_blocks"
     else
       begin
         page_name =~ /the (.*) page/

@@ -13,7 +13,7 @@ Feature: User deletes sleep block
     And I follow "Jan 1"
     When I follow "Jan 1 2:10pm - Jan 1 3:30pm"
     And press "delete"
-    Then I should see "Sleep journal for Alex"
+    Then I should be on the sleep journal page for Alex
     And I should not see a sleep block from 2:10pm to 3:30pm on Jan 1
 
   Scenario: deleting an unfinished sleep block
@@ -27,6 +27,5 @@ Feature: User deletes sleep block
     When I go to the home page
     And I follow "Sleep journal"
     And I press "delete"
-    Then I should see "Sleep journal for Alex"
-    And I should see "New sleep block"
+    Then I should be on the sleep journal page for Alex
     And I should see nothing in the "Start time" field

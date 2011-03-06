@@ -17,6 +17,6 @@
       %dt
         = f.label :duration
         %span.instruction (e.g. 2 hours; 1:35; 0:45)
-      %dd= f.text_field :duration
+      %dd= f.text_field :duration, :class => 'half-size'
   %fieldset.actions
     = f.submit "save"

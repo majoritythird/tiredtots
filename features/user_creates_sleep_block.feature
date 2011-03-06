@@ -8,11 +8,9 @@ Feature: User creates a sleep block
     When I go to the home page
     Then I should not see "To get started"
     When I follow "Sleep journal"
-    Then I should see "Sleep journal for Alex"
-    When I fill in "Start time" with "2:15PM"
+    And I fill in "Start time" with "2:15PM"
     And I press "save"
-    Then I should see "Sleep journal for Alex"
-    And I should see "Open sleep block"
+    Then I should be on the sleep journal page for Alex
     And I should see "Jan 1 2:15pm" in the "Start time" field
 
   Scenario: with chronic-friendly strings for the time
@@ -36,12 +34,10 @@ Feature: User creates a sleep block
       | finish_time |                   |
     When I go to the home page
     And I follow "Sleep journal"
-    Then I should see "Open sleep block"
-    And I should see "Jan 1 2:10pm" in the "Start time" field
+    Then I should see "Jan 1 2:10pm" in the "Start time" field
     When I fill in "Finish time" with "3:30pm"
     And I press "save"
-    Then I should see "Sleep journal for Alex"
-    And I should see a sleep block from 2:10pm to 3:30pm on Jan 1
+    Then I should see a sleep block from 2:10pm to 3:30pm on Jan 1
     And I should see no data for 2:00pm on Jan 1
 
   Scenario: finishing a sleep block by providing a duration
@@ -86,7 +82,7 @@ Feature: User creates a sleep block
     Then I should see "Start time can't be blank"
     And I should not see "Start time is invalid"
     When I follow "cancel"
-    Then I should see "Sleep journal for Alex"
+    Then I should be on the sleep journal page for Alex
 
   Scenario: sleep blocks with times that cannot be parsed
     Given I am signed in
@@ -182,5 +178,4 @@ Feature: User creates a sleep block
     And I follow "Sleep journal"
     And I fill in "Start time" with "Oct 23 7pm"
     And I press "save"
-    Then I should see "Open sleep block"
-    And I should see "Oct 23 7:00pm" in the "Start time" field
+    Then I should see "Oct 23 7:00pm" in the "Start time" field

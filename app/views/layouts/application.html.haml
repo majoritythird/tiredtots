@@ -12,7 +12,7 @@
       %header
         %section
           %nav#primary
-            = link_to(image_tag('logo.gif'), root_path)
+            = link_to(image_tag('logo.gif'), root_path, :title => 'home')
           %nav#secondary
             - if user_signed_in?
               Signed in as

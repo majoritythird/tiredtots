@@ -11,7 +11,7 @@ Feature: User adds new child
     Then I should see "Children"
     And I should see "Alex"
     When I follow "Alex"
-    Then I should see "Sleep journal for Alex"
+    Then I should be on the sleep journal page for Alex
 
   Scenario: without entering a name
     Given I am signed in
@@ -55,7 +55,7 @@ Feature: User adds new child
     And I press "save"
     Then I should see "Alex the Great/&?\est"
     When I follow "Alex the Great/&?\est"
-    Then I should see "Sleep journal for Alex the Great/&?\est"
+    Then I should be on the sleep journal page for Alex the Great/&?\est
 
   Scenario: canceling the creation of the first child
     Given I am signed in
