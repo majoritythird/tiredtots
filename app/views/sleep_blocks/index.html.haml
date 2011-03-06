@@ -1,12 +1,8 @@
 .sleep_form
+  = render :partial => "form"
   - if child.unfinished_sleep_block?
-    -# %h2 Open sleep block
-    = render :partial => "form"
     or
     = button_to "delete", child_sleep_block_path(child, sleep_block), :method => "delete"
-  - else
-    -# %h2 New sleep block
-    = render :partial => "form"
 
 - if tracked_days.any?
   .sleep_table
