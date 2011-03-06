@@ -3,6 +3,8 @@
     %ul.errors
       - child.errors.full_messages.each do |error_message|
         %li= error_message
-  = f.label :name
-  = f.text_field :name
-  = f.submit "save"
+  %fieldset
+    = f.label :name
+    = f.text_field :name
+  %fieldset.actions
+    = f.submit "save"
