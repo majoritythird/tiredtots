@@ -3,6 +3,11 @@
 body
   margin: 0
   padding: 0
+  background-color: #FFF
+  background-image: url("/images/background_1pixel.gif")
+  background-position: 46px left
+  background-repeat: repeat-x
+  color: #404040
 
 .cloaked
   display: none
@@ -15,22 +20,32 @@ h1
   font-size: 18px
 h2
   margin: 6px 0
+a
+  color: #3078ba
 
 header
   @include pie-clearfix
-  padding: 10px 0
-  border-bottom: 1px solid #000
+  border-bottom: 1px solid #FFF
+  background-color: #000
+  color: #FFF
+  font-size: 14px
+  a
+    color: #6fb9fc
+  img
+    padding-top: 3px
   section
     @include guttered
     nav#primary
       float: left
     nav#secondary
+      padding-top: 14px
       float: right
     nav#secondary
 
 #main
   @include guttered
   margin-top: 10px
+  min-height: 550px
 
 .children_header
   @include pie-clearfix
@@ -49,3 +64,16 @@ ul.children
       background-color: #ededed
     .child_name
       font-weight: bold
+
+#footer
+  margin-top: 40px
+  min-height: 50px
+  background-color: #6fb9fc
+  color: #f2f2f2
+  .content
+    @include guttered
+    padding-top: 18px
+    .attribution
+      float: left
+    .notices
+      float: right

@@ -5,7 +5,7 @@ Given /^I am signed in$/ do
   When  %(I fill in "Email" with "#{@me.email}")
   And   %(I fill in "Password" with "#{@me.password}")
   And   %(I press "Sign in")
-  Then  %(I should see "signed in as #{@me.email}")
+  Then  %(I should see "Signed in as #{@me.email}")
 end
 
 Given /^I am signed out$/ do

@@ -1,12 +1,16 @@
-.sleep_blocks
+html.sleep_blocks
+  #container
+    background: transparent url("/images/cloud.gif") no-repeat 180px 65px
+
+.sleep_table
   margin-top: 50px
   .header
-    width: 1070px
+    width: 960px
     white-space: nowrap
     div
       float: left
       font-size: 10px
-      width: 7px
+      width: 6px
       padding: 0
       &.date
         font-size: inherit
@@ -17,12 +21,13 @@
         filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
   .day
     clear: both
-    width: 1070px
+    width: 960px
+    height: 17px
     white-space: nowrap
     .total
       font-size: 11px
     div
-      width: 5px
+      width: 4px
       float: left
       padding: 0
       margin: 1px
@@ -38,7 +43,7 @@
         background-color: #AADFFF
       &.no_data
         background-color: #FFF
-        width: 3px
+        width: 2px
         height: 14px
         border: 1px solid #CCC
 form

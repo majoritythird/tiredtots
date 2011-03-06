@@ -1,5 +1,5 @@
 !!! 5
-%html(lang="en-US")
+%html(lang="en-US" class=page_class)
   %head
     %title Tired Tots
     %meta(charset="UTF-8")
@@ -8,25 +8,36 @@
     = stylesheet_link_tag "chart"
     = javascript_include_tag 'jquery/jquery-1.4.3.min', 'graphite/lib/raphael.js', 'graphite/graphite.svg.js', 'application.js'
   %body
-    %header
-      %section
-        %nav#primary
-          = link_to "Tired Tots (home)", root_path
-        %nav#secondary
-          - if user_signed_in?
-            signed in as
-            %em= current_user.email
-            |
-            = link_to "profile", edit_user_registration_path
-            |
-            = link_to "sign out", destroy_user_session_path
-          - else
-            = link_to "sign up", new_user_registration_path
-            |
-            = link_to "sign in", new_user_session_path
+    #container
+      %header
+        %section
+          %nav#primary
+            = link_to(image_tag('logo.gif'), root_path)
+          %nav#secondary
+            - if user_signed_in?
+              Signed in as
+              %em= current_user.email
+              |
+              = link_to "profile", edit_user_registration_path
+              |
+              = link_to "sign out", destroy_user_session_path
+            - else
+              = link_to "sign up", new_user_registration_path
+              |
+              = link_to "sign in", new_user_session_path
 
-    #main
-      %p.notice= notice
-      %p.alert= alert
+      #main
+        %p.notice= notice
+        %p.alert= alert
 
-      = yield
+        = yield
+
+      #footer
+        .content
+          .attribution
+            = link_to "Wes Gibbs", "http://wesgibbs.me"
+            made this!
+          .notices
+            &copy;
+            = Date.today.year
+            Wes Gibbs
