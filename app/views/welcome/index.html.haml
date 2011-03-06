@@ -1,7 +1,11 @@
-%h1 Welcome
-%p Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior.
-
-- if user_signed_in?
+- if !user_signed_in?
+  .clouded
+    .copy
+      %h1 Welcome
+      %p Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior.
+      To get started,
+      = link_to "sign up", new_user_registration_path
+- else
   - if current_user.children.empty?
     %p
       To get started,
@@ -9,7 +13,7 @@
   - else
     .children_header
       .title
-        %h2 Your children
+        %h1 Your children
       .action
         = link_to "Manage your children", children_path
     %ul.children
@@ -35,6 +39,3 @@
                       %td= number_with_precision(tracked_day.sleep_total_in_hours, :precision => 1)
           - else
             Not enough data to chart yet.
-- else
-  To get started,
-  = link_to "sign up", new_user_registration_path

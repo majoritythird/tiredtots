@@ -62,8 +62,7 @@ Feature: User adds new child
     When I go to the home page
     And I follow "add a child"
     And I follow "cancel"
-    Then I should see "Welcome"
-    And I should see "To get started, add a child"
+    Then I should see "To get started, add a child"
 
   Scenario: canceling the creation of the second child
     Given I am signed in

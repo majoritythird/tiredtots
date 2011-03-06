@@ -42,7 +42,7 @@ Feature: User views sleep graph
     When I go to the home page
     And I follow "Sleep journal"
     And I follow "home" within "header"
-    Then I should see "Welcome"
+    Then I should see "Your children"
 
   @javascript
   Scenario: paging through older data
