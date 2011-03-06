@@ -5,7 +5,7 @@ Feature: User edits child
     And I have the following children:
       | name | Alex |
     When I am on the home page
-    And I follow "Manage your children"
+    And I follow "(manage)"
     Then I should see "Your Children"
     When I follow "edit"
     Then I should see "Edit Child"
@@ -19,7 +19,7 @@ Feature: User edits child
     And I have the following children:
       | name | Alex |
     When I am on the home page
-    And I follow "Manage your children"
+    And I follow "(manage)"
     And I follow "edit"
     When I follow "cancel"
     Then I should see "Your Children"

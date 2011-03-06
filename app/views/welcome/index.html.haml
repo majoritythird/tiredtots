@@ -12,10 +12,9 @@
       = link_to "add a child", new_child_path
   - else
     .children_header
-      .title
-        %h1 Your children
-      .action
-        = link_to "Manage your children", children_path
+      %h1
+        Your children
+        = link_to "(manage)", children_path
     %ul.children
       - current_user.children.each do |child|
         %li.child{:class => cycle("odd", "even")}

@@ -38,7 +38,7 @@ Feature: User adds new child
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "Manage your children"
+    And I follow "(manage)"
     And I follow "Add a child"
     And I fill in "Name" with "Alex"
     And I press "save"
@@ -69,7 +69,7 @@ Feature: User adds new child
     And I have the following child:
       | name | Alex |
     When I go to the home page
-    And I follow "Manage your children"
+    And I follow "(manage)"
     And I follow "Add a child"
     And I follow "cancel"
     Then I should see "Your Children"
