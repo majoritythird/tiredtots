@@ -6,7 +6,7 @@ namespace :db do
     child1 = Factory(:child, :name => "Mary-Kate", :user => user)
     child2 = Factory(:child, :name => "Ashley", :user => user)
     [child1, child2].each do |child|
-      14.days.ago.to_date.upto(Time.zone.today) do |date|
+      15.days.ago.to_date.upto(Time.zone.today - 1.day) do |date|
         day1 = date.strftime("%b %d")
         day2 = (date + 1.day).strftime("%b %d")
         child.sleep_blocks.create(:start_time => "#{day1} #{rand(3)+7}pm", :finish_time => "#{day2} #{rand(3)+6}am")
