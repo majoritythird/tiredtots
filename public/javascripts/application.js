@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
 
-  $('.sleep_blocks a#pager').live('click', function(event) {
+  $('.sleep_blocks #pager a').live('click', function(event) {
     event.preventDefault();
-    var pager = $(this);
+    var pager = $(this).parents('#pager');
     pager.hide();
-    $(this).next('.cloaked').show();
+    pager.next('.cloaked').show();
     $.get($(this).attr('href'), function(json) {
       $('.sleep_blocks .days').append(json.html);
       $(pager).parent('div').replaceWith(json.link);

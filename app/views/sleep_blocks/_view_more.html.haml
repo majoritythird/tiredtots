@@ -1,5 +1,7 @@
-.clear
+.view_more
   - page = params[:page] ? params[:page].to_i + 1 : 1
-  = link_to "view more sleep history", paged_child_sleep_blocks_path(child, page), :id => 'pager'
+  #pager
+    = link_to "view more sleep history", paged_child_sleep_blocks_path(child, page)
+    &raquo;
   .cloaked
     = image_tag "ajax-loader.gif"

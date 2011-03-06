@@ -1,3 +1,5 @@
+@import "mixins.sass"
+
 html.sleep_blocks
   #container
     background: transparent url("/images/cloud.gif") no-repeat 342px 47px
@@ -28,33 +30,39 @@ html.sleep_blocks
         -webkit-transform: rotate(-90deg)
         -moz-transform: rotate(-90deg)
         filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
-  .day
-    clear: both
-    width: 960px
-    height: 17px
-    white-space: nowrap
-    .total
-      font-size: 11px
-    div
-      width: 4px
-      float: left
-      padding: 0
-      margin: 1px
-      height: 16px
-      &.date
-        font-size: 13px
-        width: 46px
-        margin: 0 3px 0 0
-        text-align: right
-      &.asleep
-        background-color: #4dbbff
-      &.awake
-        background-color: #AADFFF
-      &.no_data
-        background-color: #FFF
-        width: 2px
-        height: 14px
-        border: 1px solid #CCC
+  .days
+    @include pie-clearfix
+    .day
+      clear: both
+      width: 960px
+      height: 17px
+      white-space: nowrap
+      .total
+        font-size: 11px
+      div
+        width: 4px
+        float: left
+        padding: 0
+        margin: 1px
+        height: 16px
+        &.date
+          font-size: 13px
+          width: 46px
+          margin: 0 3px 0 0
+          text-align: right
+        &.asleep
+          background-color: #4dbbff
+        &.awake
+          background-color: #AADFFF
+        &.no_data
+          background-color: #FFF
+          width: 2px
+          height: 14px
+          border: 1px solid #CCC
+  .view_more
+    margin: 8px 0
+    font-size: 14px
+
 form
   .left
     float: left
