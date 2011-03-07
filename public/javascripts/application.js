@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
     max_y_value: 20,
     grid: {
       draw_y: true,
-      color: "#d7d7d7",
+      color: "#8c8c8c",
       gap_y: 4
     },
     point: {
@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
       bezier_curve: 0,
       stroke_width: 2,
       fill_opacity: 0.1,
-      color: "#3683b3"
+      color: "#6b70ff"
     },
     labels_y: {
       draw: true,
