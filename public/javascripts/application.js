@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
       bezier_curve: 0,
       stroke_width: 2,
       fill_opacity: 0.1,
-      color: "#4DBBFF"
+      color: "#3683b3"
     },
     labels_y: {
       draw: true,

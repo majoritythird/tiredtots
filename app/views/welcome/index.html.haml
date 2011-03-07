@@ -17,7 +17,7 @@
         = link_to "(manage)", children_path
     %ul.children
       - current_user.children.each do |child|
-        %li.child{:class => cycle("odd", "even")}
+        %li.child
           .child_name= child.name
           %p= link_to "Sleep journal", child_sleep_blocks_path(child)
           - if child.recent_tracked_days.count > 1
