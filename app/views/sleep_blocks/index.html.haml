@@ -1,3 +1,6 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag "sleep_blocks"
+
 .sleep_form
   = render :partial => "form"
   - if child.unfinished_sleep_block?
