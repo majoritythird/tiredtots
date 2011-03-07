@@ -1,7 +1,7 @@
 .sleep_form
   = render :partial => "form"
   - if child.unfinished_sleep_block?
-    or
+    %span.button_connector or
     = button_to "delete", child_sleep_block_path(child, sleep_block), :method => "delete"
 
 - if tracked_days.any?

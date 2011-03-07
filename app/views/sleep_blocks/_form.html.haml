@@ -1,4 +1,4 @@
-= form_for [child, sleep_block] do |f|
+= form_for [child, sleep_block], html: {id: 'sleep_block'} do |f|
   - if sleep_block.errors.any?
     %ul.errors
       - sleep_block.errors.full_messages.each do |error_message|
