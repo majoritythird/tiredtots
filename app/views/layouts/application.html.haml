@@ -4,6 +4,7 @@
     %title Tired Tots
     %meta(charset="UTF-8")
     = stylesheet_link_tag "public"
+    = stylesheet_link_tag "mobile" if mobile_device?
     = yield :stylesheets
     = javascript_include_tag 'jquery/jquery-1.4.3.min', 'graphite/lib/raphael.js', 'graphite/graphite.svg.js', 'application.js'
   %body
