@@ -1,0 +1,20 @@
+!!! 5
+%html(lang="en-US" class=page_class)
+  %head
+    %title Tired Tots
+    %meta(charset="UTF-8")
+    = stylesheet_link_tag "/jqtouch/jqtouch.min.css", "/jqtouch/themes/apple/theme.min.css"
+    = javascript_include_tag "/jqtouch/jquery.1.3.2.min.js", "/jqtouch/jqtouch.min.js", "mobile"
+  %body
+    .current
+      .toolbar
+        = link_to "Back", root_path, :class => "back button", :rel => "external" unless current_page? root_path
+        %h1= h yield(:title)
+        = yield(:toolbar)
+
+      - unless flash.empty?
+        .info
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}"
+
+      = yield
