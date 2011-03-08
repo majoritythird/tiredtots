@@ -1,5 +1,5 @@
 = form_for [child, sleep_block], html: {id: 'sleep_block'} do |f|
-  %ul.form
+  %ul.rounded
     - if sleep_block.errors.any?
       - sleep_block.errors.full_messages.each do |error_message|
         %li.error= error_message
@@ -9,4 +9,4 @@
     %span or
     -# %span.instruction (e.g. 2 hours; 1:35; 0:45)
     %li= f.text_field :duration, placeholder: 'duration'
-    %li= f.submit "save", class: 'submit'
+  = f.submit "save", class: 'submit whiteButton'

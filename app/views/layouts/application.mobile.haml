@@ -8,9 +8,7 @@
   %body
     .current
       .toolbar
-        = link_to "Home", root_path, :class => "back button", :rel => "external" unless current_page? root_path
-        %h1= h yield(:title)
-        = yield(:toolbar)
+        = yield :toolbar
 
       - unless flash.empty?
         .info

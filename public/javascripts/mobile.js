@@ -1,1 +1,1 @@
-$.jQTouch({});
+$.jQTouch({useFastTouch:false});

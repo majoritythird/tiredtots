@@ -1,10 +1,9 @@
-- content_for :title do
-  Sleep Journal
-
 - content_for :toolbar do
-  = link_to 'New', new_child_sleep_block_path(child), rel: 'external', class: 'button'
+  = link_to "Back", root_path, class: 'back button', rel: 'external'
+  %h1= child.name
+  = link_to "+", new_child_sleep_block_path(child), class: 'add slideup button', rel: 'external'
 
 - if recent_sleep_blocks.any?
-  %ul.sleep_table
+  %ul
     - recent_sleep_blocks.each do |block|
-      %li= link_to block.to_s, edit_child_sleep_block_path(child, block), rel: 'external'
+      %li.arrow= link_to block.to_s, edit_child_sleep_block_path(child, block)

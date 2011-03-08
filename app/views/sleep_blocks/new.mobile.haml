@@ -1,7 +1,5 @@
-- content_for :title do
-  New Journal Entry
-
 - content_for :toolbar do
-  = link_to 'Cancel', child_sleep_blocks_path(child), rel: 'external', class: 'button'
+  = link_to "Back", child_sleep_blocks_path(child), class: 'back button', rel: 'external'
+  %h1 New Entry
 
 = render partial: 'form'

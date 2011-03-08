@@ -1,10 +1,9 @@
-- content_for :title do
-  Your Children
 - content_for :toolbar do
-  = link_to "Add", new_child_path, rel: 'external', class: 'button'
+  = link_to "Back", root_path, class: 'back button', rel: 'external'
+  %h1 Your Children
+  = link_to "+", new_child_path, class: 'add slideup button', rel: 'external'
 
-%ul.children
+%ul
   - children.each do |child|
-    %li.child
-      = child.name
-      = link_to "edit", edit_child_path(child), rel: 'external'
+    %li.arrow
+      = link_to child.name, edit_child_path(child)

@@ -1,7 +1,7 @@
 = form_for child do |f|
-  %ul.form
+  %ul.rounded
     - if child.errors.any?
       - child.errors.full_messages.each do |error_message|
         %li.error= error_message
     %li= f.text_field :name, placeholder: 'Name'
-    %li= f.submit "Save", class: 'submit'
+  = f.submit "Save", class: 'whiteButton submit'

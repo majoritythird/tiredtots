@@ -1,26 +1,22 @@
-- content_for :title do
-  Home
-
 - if !user_signed_in?
-  %p Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior.
-  To get started,
+  - content_for :toolbar do
+    %h1 Home
+  Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior. To get started,
   %ul.individual
-    %li= link_to "sign up", new_user_registration_path, class: "whiteButton", rel: "external"
-    %li= link_to "sign in", new_user_session_path, class: "whiteButton", rel: "external"
+    %li= link_to "sign up", new_user_registration_path, class: "whiteButton"
+    %li= link_to "sign in", new_user_session_path, class: "whiteButton"
 - else
   - content_for :toolbar do
-    = link_to 'Sign out', destroy_user_session_path, rel: 'external', class: 'button'
+    %h1 Home
+    = link_to 'Sign out', destroy_user_session_path, class: 'button', rel: 'external'
   - if current_user.children.empty?
-    %p
-      To get started,
-      = link_to "add a child", new_child_path, class: "whiteButton", rel: "external"
+    To get started,
+    = link_to "add a child", new_child_path, class: "whiteButton"
   - else
-    .children_header
-      %h2
-        Your children
-        = link_to "(manage)", children_path, rel: "external"
-    %ul.children
+    %h2
+      View sleep journal for
+    %ul
       - current_user.children.each do |child|
-        %li.child
-          .child_name= child.name
-          = link_to "Sleep journal", child_sleep_blocks_path(child), rel: 'external'
+        %li.arrow= link_to child.name, child_sleep_blocks_path(child)
+    %ul
+      %li.arrow= link_to "Manage children", children_path
