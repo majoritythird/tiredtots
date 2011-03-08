@@ -1,0 +1,8 @@
+- content_for :title do
+  Edit sleep block
+
+- content_for :toolbar do
+  = link_to 'Cancel', child_sleep_blocks_path(child), rel: 'external', class: 'button'
+
+= render partial: 'form'
+= button_to "delete", child_sleep_block_path(child, sleep_block), method: "delete"

@@ -1,0 +1,12 @@
+= form_for [child, sleep_block], html: {id: 'sleep_block'} do |f|
+  %ul.form
+    - if sleep_block.errors.any?
+      - sleep_block.errors.full_messages.each do |error_message|
+        %li.error= error_message
+    -# %span.instruction (e.g. yesterday at 8pm; 3:15pm; Jan 12 at 1:30pm)
+    %li= f.text_field :start_string, placeholder: 'Start time'
+    %li= f.text_field :finish_string, placeholder: 'Finish time'
+    %span or
+    -# %span.instruction (e.g. 2 hours; 1:35; 0:45)
+    %li= f.text_field :duration, placeholder: 'duration'
+    %li= f.submit "save", class: 'submit'

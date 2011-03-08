@@ -1,0 +1,7 @@
+- content_for :title do
+  New Journal Entry
+
+- content_for :toolbar do
+  = link_to 'Cancel', child_sleep_blocks_path(child), rel: 'external', class: 'button'
+
+= render partial: 'form'
