@@ -4,6 +4,7 @@
     - child.errors.full_messages.each do |error_message|
       %li.error= error_message
   .field
-    = f.text_field :name, placeholder: 'Name'
+    = f.label :name, "Child's name"
+    = f.text_field :name
   .actions
     = f.submit "Save", 'data-icon' => 'check'
