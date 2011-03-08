@@ -4,6 +4,7 @@ class SleepBlocksController < ApplicationController
   expose(:child) { current_user.children.find_by_parameterized_name params[:child_id] }
   expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
   expose(:per_page) { 20 }
+  expose(:recent_sleep_blocks) { child.sleep_blocks.limit(5).order('start_time desc') }
   expose(:sleep_block) do
     if child.sleep_blocks.unfinished.any? && params[:id].nil?
       child.sleep_blocks.unfinished.first
@@ -40,15 +41,24 @@ class SleepBlocksController < ApplicationController
   end
 
   def create
-    sleep_block.save
-    respond_with sleep_block, :location => child_sleep_blocks_path(child)
+    the_response = sleep_block.save ? redirect_to(child_sleep_blocks_path(child)) : render(:new)
+    respond_with child do |format|
+      format.any { the_response }
+    end
   end
 
-  alias update create
+  def update
+    the_response = sleep_block.save ? redirect_to(child_sleep_blocks_path(child)) : render(:edit)
+    respond_with child do |format|
+      format.any { the_response }
+    end
+  end
 
   def destroy
     sleep_block.destroy
-    respond_with sleep_block, :location => child_sleep_blocks_path(child)
+    respond_with sleep_block do |format|
+      format.any { redirect_to child_sleep_blocks_path(child) }
+    end
   end
 
 end

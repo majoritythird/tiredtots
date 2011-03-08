@@ -15,10 +15,17 @@ class ChildrenController < ApplicationController
   expose(:children) { current_user.reload.children }
 
   def create
-    child.save
-    respond_with child, :location => children_path
+    the_response = child.save ? redirect_to(children_path) : render(:new)
+    respond_with child do |format|
+      format.any { the_response }
+    end
   end
 
-  alias update create
+  def update
+    the_response = child.save ? redirect_to(children_path) : render(:edit)
+    respond_with child do |format|
+      format.any { the_response }
+    end
+  end
 
 end
