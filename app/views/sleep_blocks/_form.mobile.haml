@@ -4,13 +4,13 @@
       - sleep_block.errors.full_messages.each do |error_message|
         %li.error= error_message
   .field
-    = f.text_field :start_string, placeholder: 'Start time'
     %span.instruction (e.g. yesterday at 8pm; 3:15pm; Jan 12 at 1:30pm)
+    = f.text_field :start_string, placeholder: 'Start time'
   .field
-    = f.text_field :finish_string, placeholder: 'Finish time'
     %span.instruction (e.g. yesterday at 9pm; 4:15pm; Jan 12 at 2:30pm)
+    = f.text_field :finish_string, placeholder: 'Finish time'
   .field
-    = f.text_field :duration, placeholder: 'Duration'
     %span.instruction (e.g. 2 hours; 1:35; 0:45)
+    = f.text_field :duration, placeholder: 'Duration'
   .actions
     = f.submit "save", 'data-icon' => 'check'
