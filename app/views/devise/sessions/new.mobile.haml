@@ -1,7 +1,8 @@
 - content_for :title do
   Sign In
-= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form'}) do |f|
-  %ul
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  %ul.form
     %li= f.text_field :email, placeholder: 'Email'
     %li= f.password_field :password, placeholder: 'Password'
     - if devise_mapping.rememberable?
