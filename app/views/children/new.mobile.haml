@@ -1,0 +1,5 @@
+- content_for :title do
+  New Child
+= render partial: 'form'
+or
+= link_to "cancel", children.any? ? children_path : root_path, rel: 'external'

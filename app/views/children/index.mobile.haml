@@ -1,0 +1,9 @@
+-content_for :title do
+  Your Children
+
+= link_to "Add a child", new_child_path, rel: 'external'
+%ul.children
+  - children.each do |child|
+    %li.child
+      = child.name
+      = link_to "edit", edit_child_path(child), rel: 'external'

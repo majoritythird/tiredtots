@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  respond_to :html
+  respond_to :html, :mobile
 
   before_filter :set_time_zone
   before_filter :prepare_for_mobile
