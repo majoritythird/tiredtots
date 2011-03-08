@@ -6,6 +6,7 @@
 
 - content_for :toolbar do
   %h1 Sign Up
+  = link_to 'Home', root_path, class: 'ui-btn-right', 'data-icon' => 'home', rel: 'external'
 
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!

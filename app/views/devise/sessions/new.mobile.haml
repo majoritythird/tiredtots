@@ -6,6 +6,7 @@
 
 - content_for :toolbar do
   %h1 Sign In
+  = link_to 'Home', root_path, class: 'ui-btn-right', 'data-icon' => 'home', rel: 'external'
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
