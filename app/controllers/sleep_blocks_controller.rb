@@ -4,7 +4,7 @@ class SleepBlocksController < ApplicationController
   expose(:child) { current_user.children.find_by_parameterized_name params[:child_id] }
   expose(:more_tracked_days) { child.tracked_days.count > (params[:page].to_i + 1) * per_page }
   expose(:per_page) { 20 }
-  expose(:recent_sleep_blocks) { child.sleep_blocks.limit(5).order('start_time desc') }
+  expose(:recent_sleep_blocks) { child.sleep_blocks.limit(10).order('start_time desc') }
   expose(:sleep_block) do
     if child.sleep_blocks.unfinished.any? && params[:id].nil?
       child.sleep_blocks.unfinished.first
