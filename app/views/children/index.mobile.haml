@@ -1,7 +1,8 @@
--content_for :title do
+- content_for :title do
   Your Children
+- content_for :toolbar do
+  = link_to "Add", new_child_path, rel: 'external', class: 'button'
 
-= link_to "Add a child", new_child_path, rel: 'external'
 %ul.children
   - children.each do |child|
     %li.child

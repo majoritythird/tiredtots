@@ -1,8 +1,7 @@
-= form_for(child, html: {class: 'form'}) do |f|
-  - if child.errors.any?
-    %ul.errors
+= form_for child do |f|
+  %ul.form
+    - if child.errors.any?
       - child.errors.full_messages.each do |error_message|
-        %li= error_message
-  %ul
+        %li.error= error_message
     %li= f.text_field :name, placeholder: 'Name'
     %li= f.submit "Save", class: 'submit'

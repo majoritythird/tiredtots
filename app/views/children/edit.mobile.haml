@@ -1,5 +1,6 @@
 -content_for :title do
   Edit Child
+- content_for :toolbar do
+  = link_to "Cancel", children_path, rel: 'external', class: 'button'
+
 = render partial: 'form'
-or
-= link_to "cancel", children_path, rel: 'external'
