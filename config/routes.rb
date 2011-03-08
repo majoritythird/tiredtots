@@ -9,5 +9,8 @@ Sleepmonster::Application.routes.draw do
     end
   end
 
+  get "/mobile", to: "application#mobile"
+  get "/fullsite", to: "application#fullsite"
+
   root to: "welcome#index"
 end

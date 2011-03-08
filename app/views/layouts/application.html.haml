@@ -4,7 +4,7 @@
     %title Tired Tots
     %meta(charset="UTF-8")
     = stylesheet_link_tag "public"
-    = stylesheet_link_tag "mobile" if mobile_device?
+    = stylesheet_link_tag "mobile" if mobile_site_requested?
     = yield :stylesheets
     = javascript_include_tag 'jquery/jquery-1.4.3.min', 'graphite/lib/raphael.js', 'graphite/graphite.svg.js', 'application.js'
   %body
@@ -39,6 +39,9 @@
         .attribution
           = link_to "Wes Gibbs", "http://wesgibbs.me"
           made this!
+        - if mobile_user_agent?
+          .mobile_site
+            = link_to "View the mobile site", mobile_path
         .notices
           &copy;
           = Date.today.year

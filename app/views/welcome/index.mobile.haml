@@ -2,21 +2,15 @@
   - content_for :toolbar do
     %h1 Home
   Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior. To get started,
-  %ul.individual
-    %li= link_to "sign up", new_user_registration_path, class: "whiteButton"
-    %li= link_to "sign in", new_user_session_path, class: "whiteButton"
 - else
   - content_for :toolbar do
     %h1 Home
-    = link_to 'Sign out', destroy_user_session_path, class: 'button', rel: 'external'
+    = link_to 'Add child', new_child_path, class: 'ui-btn-right', 'data-icon' => 'plus'
   - if current_user.children.empty?
-    To get started,
-    = link_to "add a child", new_child_path, class: "whiteButton"
+    To get started, add a child
   - else
-    %h2
-      View sleep journal for
-    %ul
+    %ul(data-role='listview')
       - current_user.children.each do |child|
-        %li.arrow= link_to child.name, child_sleep_blocks_path(child)
-    %ul
-      %li.arrow= link_to "Manage children", children_path
+        %li
+          = link_to child.name, child_sleep_blocks_path(child)
+          = link_to 'edit child', edit_child_path(child), 'data-icon' => 'gear'

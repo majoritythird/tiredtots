@@ -1,9 +1,0 @@
-- content_for :toolbar do
-  = link_to "Back", root_path, class: 'back button', rel: 'external'
-  %h1 Your Children
-  = link_to "+", new_child_path, class: 'add slideup button', rel: 'external'
-
-%ul
-  - children.each do |child|
-    %li.arrow
-      = link_to child.name, edit_child_path(child)

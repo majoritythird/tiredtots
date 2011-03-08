@@ -1,9 +1,8 @@
 - content_for :toolbar do
-  = link_to "Back", root_path, class: 'back button', rel: 'external'
   %h1= child.name
-  = link_to "+", new_child_sleep_block_path(child), class: 'add slideup button', rel: 'external'
+  = link_to "Add entry", new_child_sleep_block_path(child), 'data-icon' => 'plus', class: 'ui-btn-right'
 
 - if recent_sleep_blocks.any?
-  %ul
+  %ul(data-role='listview')
     - recent_sleep_blocks.each do |block|
-      %li.arrow= link_to block.to_s, edit_child_sleep_block_path(child, block)
+      %li= link_to block.to_s, edit_child_sleep_block_path(child, block), 'data-icon' => 'gear'

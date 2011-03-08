@@ -15,16 +15,24 @@ class ChildrenController < ApplicationController
   expose(:children) { current_user.reload.children }
 
   def create
-    the_response = child.save ? redirect_to(children_path) : render(:new)
     respond_with child do |format|
-      format.any { the_response }
+      if child.save
+        format.html { redirect_to children_path }
+        format.mobile { redirect_to root_path }
+      else
+        format.any { render :new }
+      end
     end
   end
 
   def update
-    the_response = child.save ? redirect_to(children_path) : render(:edit)
     respond_with child do |format|
-      format.any { the_response }
+      if child.save
+        format.html { redirect_to children_path }
+        format.mobile { redirect_to root_path }
+      else
+        format.any { render :edit }
+      end
     end
   end
 
