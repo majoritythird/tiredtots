@@ -6,3 +6,5 @@
   %ul(data-role='listview')
     - recent_sleep_blocks.each do |block|
       %li= link_to block.to_s, edit_child_sleep_block_path(child, block), 'data-icon' => 'gear'
+- else
+  There are no entries in the journal.
