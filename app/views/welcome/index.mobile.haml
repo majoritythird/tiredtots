@@ -1,13 +1,13 @@
 - if !user_signed_in?
   - content_for :toolbar do
     %h1 Home
-  Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior. To get started,
+  Tired Tots helps you track your child's sleep habits so that you can better understand the link between the sleep your child is getting and her behavior.
 - else
   - content_for :toolbar do
     %h1 Home
     = link_to 'Add child', new_child_path, class: 'ui-btn-right', 'data-icon' => 'plus'
   - if current_user.children.empty?
-    To get started, add a child
+    To get started, add a child.
   - else
     %ul(data-role='listview')
       - current_user.children.each do |child|
