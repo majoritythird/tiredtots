@@ -29,6 +29,7 @@ class SleepBlocksController < ApplicationController
     times
   end
   expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).descending }
+  expose(:unfinished_sleep_block?) { child.sleep_blocks.unfinished.any? }
 
   def create
     the_response = sleep_block.save ? redirect_to(child_sleep_blocks_path(child)) : render(:new)
@@ -41,6 +42,13 @@ class SleepBlocksController < ApplicationController
     sleep_block.destroy
     respond_with sleep_block do |format|
       format.any { redirect_to child_sleep_blocks_path(child) }
+    end
+  end
+
+  def new
+    if unfinished_sleep_block?
+      flash[:notice] = "Finish or delete this open entry before creating a new one."
+      redirect_to edit_child_sleep_block_path(child, sleep_block) 
     end
   end
 
