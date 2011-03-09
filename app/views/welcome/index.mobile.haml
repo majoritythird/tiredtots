@@ -10,7 +10,7 @@
     To get started, add a child.
   - else
     %ul(data-role='listview')
-      - current_user.children.each do |child|
+      - current_user.children.order(:name).each do |child|
         %li
           = link_to child.name, child_sleep_blocks_path(child)
           = link_to 'edit child', edit_child_path(child), 'data-icon' => 'gear'
