@@ -30,6 +30,20 @@ class SleepBlocksController < ApplicationController
   end
   expose(:tracked_days) { child.tracked_days.paged(params[:page] || 0, per_page).descending }
 
+  def create
+    the_response = sleep_block.save ? redirect_to(child_sleep_blocks_path(child)) : render(:new)
+    respond_with child do |format|
+      format.any { the_response }
+    end
+  end
+
+  def destroy
+    sleep_block.destroy
+    respond_with sleep_block do |format|
+      format.any { redirect_to child_sleep_blocks_path(child) }
+    end
+  end
+
   def paged
     html = render_to_string(:partial => 'tracked_days.html.haml', :locals => {:tracked_days => tracked_days, :ten_minute_times => ten_minute_times})
     link = if more_tracked_days
@@ -40,24 +54,10 @@ class SleepBlocksController < ApplicationController
     render(:json => {:html => html, :link => link})
   end
 
-  def create
-    the_response = sleep_block.save ? redirect_to(child_sleep_blocks_path(child)) : render(:new)
-    respond_with child do |format|
-      format.any { the_response }
-    end
-  end
-
   def update
     the_response = sleep_block.save ? redirect_to(child_sleep_blocks_path(child)) : render(:edit)
     respond_with child do |format|
       format.any { the_response }
-    end
-  end
-
-  def destroy
-    sleep_block.destroy
-    respond_with sleep_block do |format|
-      format.any { redirect_to child_sleep_blocks_path(child) }
     end
   end
 
