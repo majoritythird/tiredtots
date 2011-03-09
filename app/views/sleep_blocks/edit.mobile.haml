@@ -1,5 +1,7 @@
 - content_for :toolbar do
   %h1 Edit Entry
 
+- cache_as(edit_child_sleep_block_path(child))
+
 = render partial: 'form'
 = button_to "delete", child_sleep_block_path(child, sleep_block), method: "delete", class: 'ui-btn-right', 'data-icon' => 'delete'

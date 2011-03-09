@@ -6,16 +6,11 @@
     = stylesheet_link_tag "http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css", "mobile.css"
     = javascript_include_tag "http://code.jquery.com/jquery-1.5.min.js"
     = yield :pre_mobile_load
-    = javascript_include_tag "http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"
+    = javascript_include_tag "http://jquerymobile.com/test/js/" # http://vurl.me/AECL
   %body
-    .page(data-role='page')
+    .page(data-role='page' data-url="#{data_url}")
       .header(data-role='header')
         = yield :toolbar
-
-      -# - unless flash.empty?
-        .info
-          - flash.each do |name, msg|
-            = content_tag :div, msg, :id => "flash_#{name}"
 
       .content(data-role='content')
         = yield
