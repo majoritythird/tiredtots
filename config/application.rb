@@ -17,5 +17,15 @@ module Sleepmonster
     config.active_support.escape_html_entities_in_json = true
 
     config.active_record.schema_format = :sql
+
+    if config.respond_to?(:sass)
+      config.sass.load_paths << Rails.root.join('vendor/assets/stylesheets')
+    end
+
+    config.assets.initialize_on_precompile = false
+
+    config.assets.enabled = true
+
+    config.assets.version = '1.0'
   end
 end
