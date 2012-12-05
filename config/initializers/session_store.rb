@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Sleepmonster::Application.config.session_store :cookie_store, :key => '_sleepmonster_session'
+Sleepmonster::Application.config.session_store :cookie_store, :key => '_tiredtots_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
