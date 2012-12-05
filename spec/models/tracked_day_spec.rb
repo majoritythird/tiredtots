@@ -6,7 +6,7 @@ describe TrackedDay do
 
     subject { child.tracked_days.for_date("2010-01-02").first.sleep_total }
 
-    let(:child) { Factory(:child) }
+    let(:child) { Fabricate :child }
 
     context "given a 2 hour nap" do
       before do

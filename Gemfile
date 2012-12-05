@@ -13,9 +13,23 @@ gem 'rake'
 gem 'sass'
 gem 'thin'
 
+group :development, :test do
+  gem 'fabrication'
+  gem 'rspec-rails'
+end
+
 group :development do
   gem 'debugger'
   gem 'heroku'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'capybara-firebug'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'timecop'
 end
 
 # Gems used only for assets and not required

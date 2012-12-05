@@ -22,6 +22,12 @@ module Sleepmonster
       config.sass.load_paths << Rails.root.join('vendor/assets/stylesheets')
     end
 
+    config.generators do |g|
+      g.test_framework :rspec, :views => false, :fixture => true
+      g.integration_tool :rspec
+      g.fixture_replacement :fabrication
+    end
+
     config.assets.initialize_on_precompile = false
 
     config.assets.enabled = true
